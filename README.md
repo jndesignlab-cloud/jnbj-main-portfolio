@@ -1,36 +1,8 @@
-# Jann Jaravata Portfolio v1.4.0 — Interactive Skill Projects
+# Jann Jaravata Portfolio v1.6.0
 
-## Key changes
-- Removed the redundant global top navigation bar.
-- Retained the profile-style cover, identity information, and one integrated navigation row.
-- Rebuilt the section below the profile header into an interactive “Do you need a designer for…” experience.
-- Skill selection now updates relevant experience, tasks, tools, and project results.
-- Added a responsive project grid for each selected skill.
-- Every project opens a dedicated dynamic case study page through `project.html?project=<slug>`.
-- Added project descriptions, roles, tools, problem, contribution, and outcome content.
-- Reused the actual portrait and selected DesignLab assets from the latest DesignLab ZIP.
-- Included purpose-built placeholder covers for projects whose final preview images have not been provided yet.
-
-## Files
-- `index.html`
-- `project.html`
-- `styles.css`
-- `script.js`
-- `project.js`
-- `project-data.js`
-- `assets/`
-
-Upload the extracted contents—not the ZIP itself—to the root of `jndesignlab-cloud/jnbj-main-portfolio`.
-
-
-## v1.5.0 updates
-- Added a three-step browsing guide
-- Added a sticky horizontal skill selector
-- Added smoother animated content changes
-- Added a clear jump from experience to matching projects
-- Added keyboard navigation for skill choices
-- Added a floating visitor counter on the homepage and project pages
-- Added session-based deduplication so navigation inside one visit does not repeatedly increment the count
-
-### Visit counter note
-The included configuration uses the existing DesignLab Apps Script endpoint. Until the optional backend patch is applied, the displayed number is shared with the main DesignLab site. See `VISITOR_COUNTER_BACKEND_PATCH.md` for a separate portfolio-only count.
+- Uses the same `listProjects` Apps Script feed as madebydesignlab.com
+- Removes the duplicate hardcoded project records
+- Filters the shared archive into personal skill categories
+- Supports future `showOnPersonalPortfolio` and `personalPortfolioSkills` fields
+- Adds a personal work-record section
+- Keeps the portfolio visit counter
