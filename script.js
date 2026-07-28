@@ -1,7 +1,24 @@
-const root=document.documentElement,theme=document.getElementById('theme'),menu=document.getElementById('menu'),mobile=document.getElementById('mobileNav');
-const saved=localStorage.getItem('jann-theme');if(saved)root.dataset.theme=saved;
-theme?.addEventListener('click',()=>{const next=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=next;localStorage.setItem('jann-theme',next)});
-menu?.addEventListener('click',()=>mobile.classList.toggle('open'));
-mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+# Jann Jaravata Portfolio v1.2.0
+
+A more compact and personal-direction homepage for:
+
+`jannjaravata.madebydesignlab.com`
+
+## Focus of this version
+- Stronger personal hero
+- Real portrait pulled from the latest DesignLab ZIP
+- Straight-to-the-point introduction
+- Skills-first portfolio flow
+- Clickable skill selector
+- Compact spacing and more concise layout
+- Minimal project scaffolding for future filtered case studies
+
+## Files
+- index.html
+- styles.css
+- script.js
+- assets/profile-photo.webp
+
+## Notes
+This version intentionally de-emphasizes service-selling language and focuses on Jann as the main subject.
+The next version can connect the selected skill categories into actual filtered case study cards or project pages.
