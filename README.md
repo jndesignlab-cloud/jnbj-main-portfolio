@@ -1,10 +1,10 @@
-# Jann Jaravata Personal Portfolio v1.13.0
+# Jann Jaravata Personal Portfolio v1.14.0
 
 Custom domain:
 
 `jannjaravata.madebydesignlab.com`
 
-## v1.13.0 changes
+## v1.14.0 changes
 
 - Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
 - Added the GitHub Pages `CNAME` file.
@@ -40,7 +40,7 @@ Enter:
 Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 
 
-## v1.13.0 interface refinement
+## v1.14.0 interface refinement
 
 - Simplified the homepage capability categories to six clear choices.
 - Centered the category icons and labels.
@@ -49,7 +49,7 @@ Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 - Preserved the shared DesignLab project archive, SEO files, and custom domain configuration.
 
 
-## v1.13.0 refinements
+## v1.14.0 refinements
 
 - Converted the About My Practice section into one reading column.
 - Moved the personal portfolio visit counter to the lower-left corner.
@@ -59,3 +59,13 @@ Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 - Moved Professional Experience directly below the Online CV introduction.
 - Rewrote CV responsibilities as action-led sentences that explain the task and resulting output.
 - Forced capability, project-preview, and CV-detail modals into clear one-column layouts.
+
+
+## v1.14.0 corrections
+
+- Re-aligned the About My Practice and final contact sections within the site shell.
+- Reduced headline widths and added responsive wrapping to stop horizontal clipping.
+- Switched the personal portfolio to separate visitor-counter API actions.
+- Added the complete updated `Code.gs` backend.
+- Added a manual `resetJannPortfolioVisitCount` function.
+- Preserved the main DesignLab counter and its existing total.
