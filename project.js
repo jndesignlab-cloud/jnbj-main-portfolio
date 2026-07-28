@@ -1,5 +1,68 @@
-const data=window.PORTFOLIO_DATA;const params=new URLSearchParams(location.search);const requested=params.get('id')||params.get('project');
-function parseSkills(value){return ProjectArchive.list(value);}function findSkillLabel(project){const text=[project.category,project.filterCategory,project.skills].join(' ').toLowerCase();for(const [key,skill] of Object.entries(data.skills)){if(text.includes(skill.label.toLowerCase().split(' & ')[0])||text.includes(key))return skill.label;}return project.category||'Selected project';}
-function missing(message='The requested project page is not available.'){document.getElementById('projectRoot').innerHTML=`<section class="missing-project shell"><h1>Project not found.</h1><p>${message}</p><a href="projects.html">Return to projects →</a></section>`;}
-function render(project,all){document.title=`${project.title} — Jann Jaravata`;document.querySelector('meta[name="description"]').setAttribute('content',project.description||'Project case study by Jann Jaravata.');document.getElementById('projectSkill').textContent=findSkillLabel(project).toUpperCase();document.getElementById('projectTitle').textContent=project.title;document.getElementById('projectSummary').textContent=project.description||'';document.getElementById('projectMeta').innerHTML=`<span>${project.client||project.category||'Independent project'}</span><span>${project.year||''}</span><span>${findSkillLabel(project)}</span>`;const img=document.getElementById('projectImage'),src=ProjectArchive.image(project);if(src){img.src=src;img.alt=`Project preview for ${project.title}`;}else img.closest('.project-image-stage').hidden=true;document.getElementById('projectRole').textContent=project.role||'Designer';document.getElementById('projectTools').innerHTML=parseSkills(project.skills).map(tool=>`<span>${tool}</span>`).join('');document.getElementById('projectProblem').textContent=project.problem||'This project focused on solving a communication, branding, or presentation need through clearer and more strategic visuals.';document.getElementById('projectContribution').textContent=project.solution||project.contribution||'I handled the design direction, layout structure, visual hierarchy, and final creative execution based on the project requirements.';document.getElementById('projectOutcome').textContent=project.outcome||'The final output provided a more polished, organized, and professional visual presentation.';const index=all.indexOf(project),next=all[(index+1)%all.length];if(next){document.getElementById('nextProjectTitle').textContent=next.title;document.getElementById('nextProjectLink').href=`project.html?id=${encodeURIComponent(ProjectArchive.id(next))}`;}else document.querySelector('.next-project').hidden=true;}
-(async()=>{try{const all=await ProjectArchive.load();const project=ProjectArchive.find(all,requested);if(!project)return missing();render(project,all);}catch(_){missing('The shared DesignLab project archive could not be reached. Please try again later.');}})();
+const data = window.PORTFOLIO_DATA;
+const params = new URLSearchParams(location.search);
+const requested = params.get('id') || params.get('project');
+const root = document.getElementById('projectRoot');
+const mainPreview = document.getElementById('projectMainPreview');
+const thumbs = document.getElementById('projectGalleryThumbs');
+const imageCount = document.getElementById('projectImageCount');
+
+function escapeHtml(value) {
+  return String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+}
+
+function findSkillLabel(project) {
+  const text = [project.category, project.filterCategory, project.skills].join(' ').toLowerCase();
+  for (const [key, skill] of Object.entries(data.skills)) {
+    if (text.includes(skill.label.toLowerCase().split(' & ')[0]) || text.includes(key)) return skill.label;
+  }
+  return project.category || 'Selected project';
+}
+
+function missing(message = 'The requested project page is not available.') {
+  root.innerHTML = `<section class="missing-project shell"><h1>Project not found.</h1><p>${escapeHtml(message)}</p><a href="projects.html">Return to projects →</a></section>`;
+}
+
+function showImage(src, index) {
+  if (!src) return;
+  mainPreview.classList.add('is-changing');
+  setTimeout(() => {
+    mainPreview.innerHTML = `<img src="${escapeHtml(src)}" alt="Project image ${index + 1}" />`;
+    requestAnimationFrame(() => mainPreview.classList.remove('is-changing'));
+  }, 120);
+  thumbs.querySelectorAll('.project-thumb-button').forEach((button, buttonIndex) => {
+    button.classList.toggle('active', buttonIndex === index);
+    button.setAttribute('aria-current', buttonIndex === index ? 'true' : 'false');
+  });
+}
+
+function render(project) {
+  document.title = `${project.title} — Jann Jaravata`;
+  document.querySelector('meta[name="description"]').setAttribute('content', project.description || 'Project gallery by Jann Jaravata.');
+  document.getElementById('projectSkill').textContent = findSkillLabel(project).toUpperCase();
+  document.getElementById('projectTitle').textContent = project.title;
+  document.getElementById('projectSummary').textContent = project.description || '';
+
+  const images = ProjectArchive.gallery(project).filter(Boolean);
+  imageCount.textContent = `${images.length} image${images.length === 1 ? '' : 's'}`;
+
+  if (!images.length) {
+    mainPreview.innerHTML = '<div class="project-gallery-empty">No project images are available yet.</div>';
+    thumbs.hidden = true;
+    return;
+  }
+
+  thumbs.innerHTML = images.map((src, index) => `<button class="project-thumb-button${index === 0 ? ' active' : ''}" type="button" data-image-index="${index}" aria-label="Show project image ${index + 1}" aria-current="${index === 0 ? 'true' : 'false'}"><img src="${escapeHtml(src)}" alt="Project thumbnail ${index + 1}" loading="lazy" decoding="async" /></button>`).join('');
+  thumbs.querySelectorAll('[data-image-index]').forEach(button => button.addEventListener('click', () => showImage(images[Number(button.dataset.imageIndex)], Number(button.dataset.imageIndex))));
+  showImage(images[0], 0);
+}
+
+(async () => {
+  try {
+    const all = await ProjectArchive.load();
+    const project = ProjectArchive.find(all, requested);
+    if (!project) return missing();
+    render(project);
+  } catch (_) {
+    missing('The shared DesignLab project archive could not be reached. Please try again later.');
+  }
+})();

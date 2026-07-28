@@ -5,12 +5,59 @@ const media = document.getElementById('previewMedia');
 const category = document.getElementById('previewCategory');
 const title = document.getElementById('previewTitle');
 const description = document.getElementById('previewDescription');
-const skills = document.getElementById('previewSkills');
-const caseLink = document.getElementById('previewCaseLink');
-let projects = []; let lastTrigger = null;
-function escapeHtml(value){return String(value||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');}
-function tile(project,index){const image=ProjectArchive.image(project);return `<button class="project-tile reveal-ready" style="--reveal-delay:${(index%8)*45}ms" data-project-id="${escapeHtml(ProjectArchive.id(project))}" type="button"><div class="project-tile-thumb">${image?`<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}" loading="lazy" decoding="async"/>`:'<span class="project-placeholder">Project preview</span>'}</div><div class="project-tile-copy"><span>${escapeHtml(project.category)}</span><h2>${escapeHtml(project.title)}</h2><p>${escapeHtml(project.description)}</p></div></button>`;}
-function openPreview(project,trigger){lastTrigger=trigger;const image=ProjectArchive.image(project);media.innerHTML=image?`<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}"/>`:'<div class="projects-state"><span>No preview image available.</span></div>';category.textContent=project.category;title.textContent=project.title;description.textContent=project.description||'A selected project from the DesignLab archive.';skills.innerHTML=ProjectArchive.list(project.skills).slice(0,5).map(skill=>`<span>${escapeHtml(skill)}</span>`).join('');caseLink.href=`project.html?id=${encodeURIComponent(ProjectArchive.id(project))}`;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');modal.querySelector('.project-preview-close')?.focus();}
-function closePreview(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');lastTrigger?.focus();}
-document.querySelectorAll('[data-project-close]').forEach(button=>button.addEventListener('click',closePreview));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('is-open'))closePreview();});
-(async()=>{try{projects=await ProjectArchive.load();count.textContent=`${projects.length} project${projects.length===1?'':'s'} in the shared archive`;if(!projects.length){grid.innerHTML='<div class="projects-state"><strong>No projects published yet.</strong><span>New items added to the DesignLab archive will appear here automatically.</span></div>';return;}grid.innerHTML=projects.map(tile).join('');grid.querySelectorAll('[data-project-id]').forEach(button=>button.addEventListener('click',()=>openPreview(ProjectArchive.find(projects,button.dataset.projectId),button)));setTimeout(()=>document.querySelectorAll('.project-tile').forEach(tile=>tile.classList.add('is-revealed')),40);}catch(error){count.textContent='Shared archive unavailable';grid.innerHTML='<div class="projects-state"><strong>The project archive could not be reached.</strong><span>Please refresh the page or try again later.</span></div>';}})();
+const galleryLink = document.getElementById('previewGalleryLink');
+let projects = [];
+let lastTrigger = null;
+
+function escapeHtml(value) {
+  return String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+}
+
+function tile(project, index) {
+  const image = ProjectArchive.image(project);
+  return `<button class="project-tile reveal-ready" style="--reveal-delay:${(index % 8) * 45}ms" data-project-id="${escapeHtml(ProjectArchive.id(project))}" type="button">
+    <div class="project-tile-thumb">${image ? `<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}" loading="lazy" decoding="async" />` : '<span class="project-placeholder">Project preview</span>'}</div>
+    <div class="project-tile-copy"><span>${escapeHtml(project.category)}</span><h2>${escapeHtml(project.title)}</h2><p>${escapeHtml(project.description)}</p></div>
+  </button>`;
+}
+
+function openPreview(project, trigger) {
+  lastTrigger = trigger;
+  const image = ProjectArchive.image(project);
+  media.innerHTML = image ? `<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}" />` : '<div class="projects-state"><span>No preview image available.</span></div>';
+  category.textContent = project.category;
+  title.textContent = project.title;
+  description.textContent = project.description || 'A selected project from the DesignLab archive.';
+  galleryLink.href = `project.html?id=${encodeURIComponent(ProjectArchive.id(project))}`;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  modal.querySelector('.project-preview-close')?.focus();
+}
+
+function closePreview() {
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  lastTrigger?.focus();
+}
+
+document.querySelectorAll('[data-project-close]').forEach(button => button.addEventListener('click', closePreview));
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closePreview(); });
+
+(async () => {
+  try {
+    projects = await ProjectArchive.load();
+    count.textContent = `${projects.length} project${projects.length === 1 ? '' : 's'} in the shared archive`;
+    if (!projects.length) {
+      grid.innerHTML = '<div class="projects-state"><strong>No projects published yet.</strong><span>New items added to the DesignLab archive will appear here automatically.</span></div>';
+      return;
+    }
+    grid.innerHTML = projects.map(tile).join('');
+    grid.querySelectorAll('[data-project-id]').forEach(button => button.addEventListener('click', () => openPreview(ProjectArchive.find(projects, button.dataset.projectId), button)));
+    setTimeout(() => document.querySelectorAll('.project-tile').forEach(tile => tile.classList.add('is-revealed')), 40);
+  } catch (error) {
+    count.textContent = 'Shared archive unavailable';
+    grid.innerHTML = '<div class="projects-state"><strong>The project archive could not be reached.</strong><span>Please refresh the page or try again later.</span></div>';
+  }
+})();

@@ -1,3 +1,15 @@
+# Jann Jaravata Portfolio v1.9.0
+
+## Update focus
+- Enlarged and corrected the animated personal-record figures
+- Improved cover headline scale and readability
+- Removed the process section from capability modals
+- Darkened modal body copy for stronger contrast
+- Simplified project previews
+- Replaced case-study project pages with image-first project galleries
+- Reduced and aligned CV headings to avoid awkward line breaks
+- Preserved the shared DesignLab project database and visitor counter
+
 # Jann Jaravata Portfolio v1.8.0
 
 ## Main improvements

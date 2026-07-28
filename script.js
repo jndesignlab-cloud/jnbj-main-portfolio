@@ -4,7 +4,6 @@ const modal = document.getElementById('skillModal');
 const modalTitle = document.getElementById('modalSkillTitle');
 const modalDescription = document.getElementById('modalSkillDescription');
 const modalTools = document.getElementById('modalSkillTools');
-const modalProcess = document.getElementById('modalProcessList');
 const modalIcon = document.getElementById('modalSkillIcon');
 const sampleProject = document.getElementById('sampleProject');
 const shuffleButton = document.getElementById('shuffleSample');
@@ -59,7 +58,7 @@ function renderSample(project) {
   const title = escapeHtml(project.title);
   const category = escapeHtml(project.category);
   const summary = escapeHtml(project.description || 'A selected project from the DesignLab archive.');
-  sampleProject.innerHTML = `<div class="sample-thumb">${image ? `<img src="${escapeHtml(image)}" alt="Preview of ${title}" />` : '<span>Project preview</span>'}</div><div class="sample-copy"><span>${category}</span><h4>${title}</h4><p>${summary}</p><div class="sample-actions"><a href="project.html?id=${encodeURIComponent(id)}">Open project ↗</a><a href="projects.html">All projects</a></div></div>`;
+  sampleProject.innerHTML = `<div class="sample-thumb">${image ? `<img src="${escapeHtml(image)}" alt="Preview of ${title}" />` : '<span>Project preview</span>'}</div><div class="sample-copy"><span>${category}</span><h4>${title}</h4><p>${summary}</p><div class="sample-actions"><a href="project.html?id=${encodeURIComponent(id)}">View gallery ↗</a><a href="projects.html">All projects</a></div></div>`;
 }
 async function openSkillModal(key, sourceButton) {
   const skill = data.skills[key];
@@ -67,7 +66,6 @@ async function openSkillModal(key, sourceButton) {
   activeSkill = key; lastSampleId = ''; lastFocusedElement = sourceButton || document.activeElement;
   modalTitle.textContent = skill.label; modalDescription.textContent = skill.description;
   modalTools.innerHTML = skill.tools.map(tool => `<span>${escapeHtml(tool)}</span>`).join('');
-  modalProcess.innerHTML = skill.tasks.map((step,index) => `<li><b>${String(index+1).padStart(2,'0')}</b><span>${escapeHtml(step)}</span></li>`).join('');
   modalIcon.innerHTML = skillIcons[key] || '';
   sampleProject.innerHTML = '<div class="sample-loading">Loading a related project…</div>';
   modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); modal.querySelector('.modal-close')?.focus();

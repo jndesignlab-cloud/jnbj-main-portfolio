@@ -1,7 +1,7 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = [
-    ...document.querySelectorAll('.motion-cover, .motion-identity, .motion-section, .page-hero, .projects-grid, .cv-hero, .cv-section, .project-hero-case, .project-image-stage, .case-content')
+    ...document.querySelectorAll('.motion-cover, .motion-identity, .motion-section, .page-hero, .projects-grid, .cv-hero, .cv-section, .project-hero-case, .project-image-stage, .case-content, .project-gallery-hero, .project-gallery-stage, .project-gallery-thumbs')
   ];
   revealTargets.forEach((element, index) => {
     element.classList.add('reveal-ready');
