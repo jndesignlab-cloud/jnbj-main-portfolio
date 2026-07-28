@@ -69,10 +69,23 @@
         <div class="finder-intro">
           <span class="section-kicker">EXPLORE MY WORK</span>
           <h2>Do you need a designer for…</h2>
-          <p>Choose a skill. I’ll show you my relevant experience and the projects connected to it.</p>
+          <p>Choose one area and follow the page from relevant experience to the projects behind it.</p>
         </div>
 
-        <div class="skill-chooser" role="tablist" aria-label="Choose a design skill">
+        <div class="flow-guide" aria-label="Portfolio browsing flow">
+          <span class="flow-step active" data-flow-step="1"><b>1</b> Choose a skill</span>
+          <i aria-hidden="true"></i>
+          <span class="flow-step" data-flow-step="2"><b>2</b> Review experience</span>
+          <i aria-hidden="true"></i>
+          <span class="flow-step" data-flow-step="3"><b>3</b> Open a project</span>
+        </div>
+
+        <div class="skill-chooser-wrap">
+          <div class="skill-chooser-head">
+            <span>CHOOSE AN AREA</span>
+            <strong id="activeSkillSummary">Showing Brand Identity</strong>
+          </div>
+          <div class="skill-chooser" role="tablist" aria-label="Choose a design skill">
           <button class="skill-choice active" data-skill="branding" role="tab" aria-selected="true">Brand Identity</button>
           <button class="skill-choice" data-skill="social" role="tab" aria-selected="false">Social Campaign</button>
           <button class="skill-choice" data-skill="web" role="tab" aria-selected="false">Website or App</button>
@@ -80,9 +93,11 @@
           <button class="skill-choice" data-skill="presentation" role="tab" aria-selected="false">Presentation</button>
           <button class="skill-choice" data-skill="systems" role="tab" aria-selected="false">Creative System</button>
           <button class="skill-choice" data-skill="photo" role="tab" aria-selected="false">Photo Retouching</button>
+          </div>
         </div>
 
-        <section class="experience-view" id="experience" role="tabpanel" aria-live="polite">
+        <section class="experience-view content-transition" id="experience" role="tabpanel" aria-live="polite">
+          <div class="section-flow-label"><b>02</b><span>Relevant experience</span></div>
           <div class="experience-main">
             <span class="experience-label" id="experienceLabel">BRANDING & VISUAL IDENTITY</span>
             <h3 id="experienceTitle">I build identities that stay consistent beyond the logo.</h3>
@@ -99,17 +114,19 @@
               <div class="tool-list" id="experienceTools"></div>
             </div>
           </div>
+          <a class="jump-projects" href="#projectGrid">View matching projects ↓</a>
         </section>
 
-        <div class="projects-heading">
+        <div class="projects-heading content-transition" id="projectsHeading">
           <div>
+            <div class="section-flow-label project-flow-label"><b>03</b><span>Projects you can open</span></div>
             <span class="section-kicker">RELATED PROJECTS</span>
             <h3 id="projectsTitle">Branding & Visual Identity</h3>
           </div>
           <span id="projectCount">3 projects</span>
         </div>
 
-        <div class="project-grid" id="projectGrid"></div>
+        <div class="project-grid content-transition" id="projectGrid"></div>
       </div>
     </section>
 
@@ -140,6 +157,12 @@
     </section>
   </main>
 
+  <aside class="visitor-float" aria-label="Portfolio visit count" title="Recorded portfolio visits">
+    <span class="visitor-float-dot" aria-hidden="true"></span>
+    <span class="visitor-float-label">Portfolio visits</span>
+    <strong id="visitorCount">—</strong>
+  </aside>
+
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div>
@@ -153,7 +176,9 @@
     </div>
   </footer>
 
+  <script src="config.js"></script>
   <script src="project-data.js"></script>
+  <script src="visitor.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -21,3 +21,16 @@
 - `assets/`
 
 Upload the extracted contents—not the ZIP itself—to the root of `jndesignlab-cloud/jnbj-main-portfolio`.
+
+
+## v1.5.0 updates
+- Added a three-step browsing guide
+- Added a sticky horizontal skill selector
+- Added smoother animated content changes
+- Added a clear jump from experience to matching projects
+- Added keyboard navigation for skill choices
+- Added a floating visitor counter on the homepage and project pages
+- Added session-based deduplication so navigation inside one visit does not repeatedly increment the count
+
+### Visit counter note
+The included configuration uses the existing DesignLab Apps Script endpoint. Until the optional backend patch is applied, the displayed number is shared with the main DesignLab site. See `VISITOR_COUNTER_BACKEND_PATCH.md` for a separate portfolio-only count.

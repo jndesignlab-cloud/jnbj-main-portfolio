@@ -1,16 +1,20 @@
 const data = window.PORTFOLIO_DATA;
-const choices = document.querySelectorAll('.skill-choice');
+const choices = [...document.querySelectorAll('.skill-choice')];
+const experienceView = document.getElementById('experience');
 const experienceLabel = document.getElementById('experienceLabel');
 const experienceTitle = document.getElementById('experienceTitle');
 const experienceDescription = document.getElementById('experienceDescription');
 const experienceTasks = document.getElementById('experienceTasks');
 const experienceTools = document.getElementById('experienceTools');
+const projectsHeading = document.getElementById('projectsHeading');
 const projectsTitle = document.getElementById('projectsTitle');
 const projectCount = document.getElementById('projectCount');
 const projectGrid = document.getElementById('projectGrid');
+const activeSkillSummary = document.getElementById('activeSkillSummary');
+const flowSteps = [...document.querySelectorAll('[data-flow-step]')];
 
-function projectCard(slug, project) {
-  return `<a class="project-item" href="project.html?project=${encodeURIComponent(slug)}">
+function projectCard(slug, project, index) {
+  return `<a class="project-item" style="--project-delay:${index * 55}ms" href="project.html?project=${encodeURIComponent(slug)}">
     <div class="project-thumb"><img src="${project.image}" alt="Preview of ${project.title}" loading="lazy" /></div>
     <div class="project-item-copy">
       <div><span>${project.category}</span><small>${project.year}</small></div>
@@ -21,10 +25,35 @@ function projectCard(slug, project) {
   </a>`;
 }
 
-function renderSkill(key, updateHash = true) {
+function setFlowStep(step) {
+  flowSteps.forEach(item => {
+    const itemStep = Number(item.dataset.flowStep);
+    item.classList.toggle('active', itemStep <= step);
+    item.classList.toggle('current', itemStep === step);
+  });
+}
+
+function animateContent() {
+  [experienceView, projectsHeading, projectGrid].forEach(element => element?.classList.add('is-updating'));
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      [experienceView, projectsHeading, projectGrid].forEach(element => element?.classList.remove('is-updating'));
+    });
+  });
+}
+
+function updateUrl(key) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('skill', key);
+  url.hash = 'work-finder';
+  history.replaceState(null, '', url);
+}
+
+function renderSkill(key, options = {}) {
   const skill = data.skills[key];
   if (!skill) return;
 
+  animateContent();
   experienceLabel.textContent = skill.label.toUpperCase();
   experienceTitle.textContent = skill.title;
   experienceDescription.textContent = skill.description;
@@ -32,18 +61,48 @@ function renderSkill(key, updateHash = true) {
   experienceTools.innerHTML = skill.tools.map(item => `<span>${item}</span>`).join('');
   projectsTitle.textContent = skill.label;
   projectCount.textContent = `${skill.projects.length} project${skill.projects.length === 1 ? '' : 's'}`;
-  projectGrid.innerHTML = skill.projects.map(slug => projectCard(slug, data.projects[slug])).join('');
+  activeSkillSummary.textContent = `Showing ${skill.label}`;
+  projectGrid.innerHTML = skill.projects.map((slug, index) => projectCard(slug, data.projects[slug], index)).join('');
 
   choices.forEach(choice => {
     const active = choice.dataset.skill === key;
     choice.classList.toggle('active', active);
     choice.setAttribute('aria-selected', String(active));
+    if (active) choice.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   });
 
-  if (updateHash) history.replaceState(null, '', `#work-finder?skill=${key}`);
+  setFlowStep(2);
+  if (options.updateUrl !== false) updateUrl(key);
+
+  if (options.userInitiated && window.innerWidth < 760) {
+    setTimeout(() => experienceView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
 }
 
-choices.forEach(choice => choice.addEventListener('click', () => renderSkill(choice.dataset.skill)));
+choices.forEach((choice, index) => {
+  choice.addEventListener('click', () => renderSkill(choice.dataset.skill, { userInitiated: true }));
+  choice.addEventListener('keydown', event => {
+    if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let targetIndex = index;
+    if (event.key === 'ArrowRight') targetIndex = (index + 1) % choices.length;
+    if (event.key === 'ArrowLeft') targetIndex = (index - 1 + choices.length) % choices.length;
+    if (event.key === 'Home') targetIndex = 0;
+    if (event.key === 'End') targetIndex = choices.length - 1;
+    choices[targetIndex].focus();
+    renderSkill(choices[targetIndex].dataset.skill, { userInitiated: true });
+  });
+});
 
-const hashSkill = location.hash.match(/skill=([a-z]+)/)?.[1];
-renderSkill(data.skills[hashSkill] ? hashSkill : 'branding', false);
+const projectsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) setFlowStep(3);
+    else if (entry.boundingClientRect.top > 0) setFlowStep(2);
+  });
+}, { threshold: 0.18 });
+
+if (projectGrid) projectsObserver.observe(projectGrid);
+
+const requestedSkill = new URLSearchParams(location.search).get('skill');
+renderSkill(data.skills[requestedSkill] ? requestedSkill : 'branding', { updateUrl: false });
+setFlowStep(1);
