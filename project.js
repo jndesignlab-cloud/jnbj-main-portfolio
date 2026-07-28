@@ -8,6 +8,7 @@ function setMeta(selector, attribute, value) {
   }
   element.setAttribute(attribute, value || '');
 }
+
 function setCanonical(url) {
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
@@ -17,6 +18,7 @@ function setCanonical(url) {
   }
   canonical.href = url;
 }
+
 function updateProjectSeo(project) {
   const projectId = ProjectArchive.id(project);
   const url = `${location.origin}${location.pathname}?id=${encodeURIComponent(projectId)}`;
@@ -56,6 +58,7 @@ function updateProjectSeo(project) {
     });
   }
 }
+
 const data = window.PORTFOLIO_DATA;
 const params = new URLSearchParams(location.search);
 const requested = params.get('id') || params.get('project');
@@ -63,15 +66,26 @@ const root = document.getElementById('projectRoot');
 const mainPreview = document.getElementById('projectMainPreview');
 const thumbs = document.getElementById('projectGalleryThumbs');
 const imageCount = document.getElementById('projectImageCount');
+const previousButton = document.getElementById('projectPrevImage');
+const nextButton = document.getElementById('projectNextImage');
+
+let galleryImages = [];
+let activeImageIndex = 0;
+let imageChangeTimer = null;
 
 function escapeHtml(value) {
-  return String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+  return String(value || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
 }
 
 function findSkillLabel(project) {
   const text = [project.category, project.filterCategory, project.skills].join(' ').toLowerCase();
   for (const [key, skill] of Object.entries(data.skills)) {
-    if (text.includes(skill.label.toLowerCase().split(' & ')[0]) || text.includes(key)) return skill.label;
+    if (text.includes(skill.label.toLowerCase()) || text.includes(key)) return skill.label;
   }
   return project.category || 'Selected project';
 }
@@ -80,39 +94,97 @@ function missing(message = 'The requested project page is not available.') {
   root.innerHTML = `<section class="missing-project shell"><h1>Project not found.</h1><p>${escapeHtml(message)}</p><a href="projects.html">Return to projects →</a></section>`;
 }
 
-function showImage(src, index) {
-  if (!src) return;
-  mainPreview.classList.add('is-changing');
-  setTimeout(() => {
-    mainPreview.innerHTML = `<img src="${escapeHtml(src)}" alt="Project image ${index + 1}" />`;
-    requestAnimationFrame(() => mainPreview.classList.remove('is-changing'));
-  }, 120);
-  thumbs.querySelectorAll('.project-thumb-button').forEach((button, buttonIndex) => {
-    button.classList.toggle('active', buttonIndex === index);
-    button.setAttribute('aria-current', buttonIndex === index ? 'true' : 'false');
+function updateArrowState() {
+  const hasMultipleImages = galleryImages.length > 1;
+  [previousButton, nextButton].forEach(button => {
+    if (!button) return;
+    button.hidden = !hasMultipleImages;
+    button.disabled = !hasMultipleImages;
   });
 }
 
+function showImage(src, index, options = {}) {
+  if (!src || !galleryImages.length) return;
+
+  activeImageIndex = ((index % galleryImages.length) + galleryImages.length) % galleryImages.length;
+  clearTimeout(imageChangeTimer);
+  mainPreview.classList.add('is-changing');
+
+  imageChangeTimer = setTimeout(() => {
+    mainPreview.innerHTML = `<img src="${escapeHtml(src)}" alt="Project image ${activeImageIndex + 1} of ${galleryImages.length}" />`;
+    requestAnimationFrame(() => mainPreview.classList.remove('is-changing'));
+  }, 100);
+
+  thumbs.querySelectorAll('.project-thumb-button').forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === activeImageIndex;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-current', isActive ? 'true' : 'false');
+    if (isActive && options.scrollThumbnail !== false) {
+      button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  });
+
+  imageCount.textContent = `${activeImageIndex + 1} / ${galleryImages.length} images`;
+}
+
+function stepImage(direction) {
+  if (galleryImages.length < 2) return;
+  const nextIndex = (activeImageIndex + direction + galleryImages.length) % galleryImages.length;
+  showImage(galleryImages[nextIndex], nextIndex);
+}
+
 function render(project) {
-  document.title = `${project.title} — Jann Jaravata`;
-  document.querySelector('meta[name="description"]').setAttribute('content', project.description || 'Project gallery by Jann Jaravata.');
+  updateProjectSeo(project);
   document.getElementById('projectSkill').textContent = findSkillLabel(project).toUpperCase();
   document.getElementById('projectTitle').textContent = project.title;
   document.getElementById('projectSummary').textContent = project.description || '';
 
-  const images = ProjectArchive.gallery(project).filter(Boolean);
-  imageCount.textContent = `${images.length} image${images.length === 1 ? '' : 's'}`;
+  galleryImages = ProjectArchive.gallery(project).filter(Boolean);
+  imageCount.textContent = `${galleryImages.length} image${galleryImages.length === 1 ? '' : 's'}`;
+  updateArrowState();
 
-  if (!images.length) {
+  if (!galleryImages.length) {
     mainPreview.innerHTML = '<div class="project-gallery-empty">No project images are available yet.</div>';
     thumbs.hidden = true;
     return;
   }
 
-  thumbs.innerHTML = images.map((src, index) => `<button class="project-thumb-button${index === 0 ? ' active' : ''}" type="button" data-image-index="${index}" aria-label="Show project image ${index + 1}" aria-current="${index === 0 ? 'true' : 'false'}"><img src="${escapeHtml(src)}" alt="Project thumbnail ${index + 1}" loading="lazy" decoding="async" /></button>`).join('');
-  thumbs.querySelectorAll('[data-image-index]').forEach(button => button.addEventListener('click', () => showImage(images[Number(button.dataset.imageIndex)], Number(button.dataset.imageIndex))));
-  showImage(images[0], 0);
+  thumbs.hidden = false;
+  thumbs.innerHTML = galleryImages.map((src, index) => `
+    <button
+      class="project-thumb-button${index === 0 ? ' active' : ''}"
+      type="button"
+      data-image-index="${index}"
+      aria-label="Show project image ${index + 1}"
+      aria-current="${index === 0 ? 'true' : 'false'}">
+      <img src="${escapeHtml(src)}" alt="Project thumbnail ${index + 1}" loading="lazy" decoding="async" />
+    </button>
+  `).join('');
+
+  thumbs.querySelectorAll('[data-image-index]').forEach(button => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.imageIndex);
+      showImage(galleryImages[index], index, { scrollThumbnail: false });
+    });
+  });
+
+  showImage(galleryImages[0], 0, { scrollThumbnail: false });
 }
+
+previousButton?.addEventListener('click', () => stepImage(-1));
+nextButton?.addEventListener('click', () => stepImage(1));
+
+document.addEventListener('keydown', event => {
+  const tagName = document.activeElement?.tagName;
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName)) return;
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    stepImage(-1);
+  } else if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    stepImage(1);
+  }
+});
 
 (async () => {
   try {
