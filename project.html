@@ -1,51 +1,61 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Project gallery by Jann Jaravata." />
-  <title>Project — Jann Jaravata</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="v1-8.css" />
-  <link rel="stylesheet" href="v1-9.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="View a selected project gallery by Jann Jaravata, including project imagery and a concise overview loaded from the shared DesignLab archive." name="description"/>
+<title>Project Gallery | Jann Jaravata</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="v1-8.css" rel="stylesheet"/>
+<link href="v1-9.css" rel="stylesheet"/>
+<meta content="Jann Nathaniel Jaravata" name="author"/><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/><meta content="Jann Jaravata, graphic designer Pangasinan, social media designer, branding designer, publication designer, web designer Philippines, creative developer" name="keywords"/><meta content="#2457ff" name="theme-color"/><meta content="light" name="color-scheme"/><meta content="en_PH" property="og:locale"/><meta content="article" property="og:type"/><meta content="Jann Jaravata — Personal Portfolio" property="og:site_name"/><meta content="Project Gallery | Jann Jaravata" property="og:title"/><meta content="View a selected project gallery by Jann Jaravata, including project imagery and a concise overview loaded from the shared DesignLab archive." property="og:description"/><meta content="https://jannjaravata.madebydesignlab.com/project.html" property="og:url"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" property="og:image"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" property="og:image:secure_url"/><meta content="image/jpeg" property="og:image:type"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="Jann Jaravata, multidisciplinary graphic designer" property="og:image:alt"/><meta content="summary_large_image" name="twitter:card"/><meta content="Project Gallery | Jann Jaravata" name="twitter:title"/><meta content="View a selected project gallery by Jann Jaravata, including project imagery and a concise overview loaded from the shared DesignLab archive." name="twitter:description"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" name="twitter:image"/><meta content="Jann Jaravata, multidisciplinary graphic designer" name="twitter:image:alt"/><link href="https://jannjaravata.madebydesignlab.com/project.html" rel="canonical"/><link href="https://jannjaravata.madebydesignlab.com/project.html" hreflang="en-PH" rel="alternate"/><link href="assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="site.webmanifest" rel="manifest"/><link href="v1-11.css" rel="stylesheet"/><script id="structuredData" type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "https://jannjaravata.madebydesignlab.com/project.html#project",
+  "url": "https://jannjaravata.madebydesignlab.com/project.html",
+  "name": "Selected Project Gallery",
+  "creator": {
+    "@id": "https://jannjaravata.madebydesignlab.com/#person"
+  },
+  "isPartOf": {
+    "@id": "https://jannjaravata.madebydesignlab.com/#website"
+  },
+  "inLanguage": "en-PH"
+}</script></head>
 <body class="project-gallery-page">
-  <header class="project-topbar">
-    <div class="shell project-topbar-inner">
-      <a href="projects.html" class="back-link">← Back to projects</a>
-      <a href="index.html" class="project-brand"><span>JJ</span><strong>Jann Jaravata</strong></a>
-      <a href="cv.html">Online CV ↗</a>
-    </div>
-  </header>
-
-  <main id="projectRoot">
-    <section class="project-gallery-hero shell">
-      <div class="project-breadcrumb" id="projectSkill">SELECTED PROJECT</div>
-      <h1 id="projectTitle">Loading project…</h1>
-      <p id="projectSummary"></p>
-    </section>
-
-    <section class="project-gallery-stage shell">
-      <div class="project-main-preview" id="projectMainPreview"><div class="project-gallery-empty">Loading project images…</div></div>
-      <div class="project-gallery-heading">
-        <div><span class="section-kicker">PROJECT IMAGES</span><h2>Browse the gallery</h2></div>
-        <span id="projectImageCount"></span>
-      </div>
-      <div class="project-gallery-thumbs" id="projectGalleryThumbs"></div>
-    </section>
-  </main>
-
-  <aside class="visitor-float" aria-label="Portfolio visit count"><span class="visitor-float-dot"></span><span class="visitor-float-label">Portfolio visits</span><strong id="visitorCount">—</strong></aside>
-  <footer class="site-footer"><div class="shell footer-inner"><div><strong>Jann Jaravata</strong><span>Project gallery</span></div><div><span>© 2026 Jann Nathaniel Jaravata</span><span>Shared DesignLab project archive</span></div></div></footer>
-
-  <script src="config.js"></script>
-  <script src="project-data.js"></script>
-  <script src="project-archive.js"></script>
-  <script src="visitor.js"></script>
-  <script src="project.js"></script>
-  <script src="motion.js"></script>
+<header class="project-topbar">
+<div class="shell project-topbar-inner">
+<a class="back-link" href="projects.html">← Back to projects</a>
+<a class="project-brand" href="index.html"><span>JJ</span><strong>Jann Jaravata</strong></a>
+<a href="cv.html">Online CV ↗</a>
+</div>
+</header>
+<main id="projectRoot">
+<section class="project-gallery-hero shell">
+<div class="project-breadcrumb" id="projectSkill">SELECTED PROJECT</div>
+<h1 id="projectTitle">Loading project…</h1>
+<p id="projectSummary"></p>
+</section>
+<section class="project-gallery-stage shell">
+<div class="project-main-preview" id="projectMainPreview"><div class="project-gallery-empty">Loading project images…</div></div>
+<div class="project-gallery-heading">
+<div><span class="section-kicker">PROJECT IMAGES</span><h2>Browse the gallery</h2></div>
+<span id="projectImageCount"></span>
+</div>
+<div class="project-gallery-thumbs" id="projectGalleryThumbs"></div>
+</section>
+</main>
+<aside aria-label="Portfolio visit count" class="visitor-float"><span class="visitor-float-dot"></span><span class="visitor-float-label">Portfolio visits</span><strong id="visitorCount">—</strong></aside>
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Jann Jaravata</strong><span>Project gallery</span></div><div><span>© 2026 Jann Nathaniel Jaravata</span><span>Project Gallery · Version 1.11.0</span><span>Last updated July 28, 2026</span></div></div></footer>
+<script src="config.js"></script>
+<script src="project-data.js"></script>
+<script src="project-archive.js"></script>
+<script src="visitor.js"></script>
+<script src="project.js"></script>
+<script src="motion.js"></script>
 </body>
 </html>

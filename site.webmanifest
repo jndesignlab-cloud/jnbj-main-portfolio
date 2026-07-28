@@ -1,0 +1,23 @@
+{
+  "name": "Jann Jaravata \u2014 Personal Portfolio",
+  "short_name": "Jann Jaravata",
+  "description": "Portfolio of Jann Nathaniel Jaravata, a multidisciplinary graphic designer in Pangasinan specializing in campaigns, branding, publications, web design, retouching, and creative systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#eef1f5",
+  "theme_color": "#2457ff",
+  "lang": "en-PH",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

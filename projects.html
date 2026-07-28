@@ -1,72 +1,82 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by Jann Jaravata, loaded from the shared DesignLab project archive." />
-  <title>Projects — Jann Jaravata</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="v1-8.css" />
-  <link rel="stylesheet" href="v1-9.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Browse selected branding, social campaign, publication, web, presentation, retouching, and creative-system projects by graphic designer Jann Jaravata." name="description"/>
+<title>Projects | Jann Jaravata</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="v1-8.css" rel="stylesheet"/>
+<link href="v1-9.css" rel="stylesheet"/>
+<meta content="Jann Nathaniel Jaravata" name="author"/><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/><meta content="Jann Jaravata, graphic designer Pangasinan, social media designer, branding designer, publication designer, web designer Philippines, creative developer" name="keywords"/><meta content="#2457ff" name="theme-color"/><meta content="light" name="color-scheme"/><meta content="en_PH" property="og:locale"/><meta content="website" property="og:type"/><meta content="Jann Jaravata — Personal Portfolio" property="og:site_name"/><meta content="Projects | Jann Jaravata" property="og:title"/><meta content="Browse selected branding, social campaign, publication, web, presentation, retouching, and creative-system projects by graphic designer Jann Jaravata." property="og:description"/><meta content="https://jannjaravata.madebydesignlab.com/projects.html" property="og:url"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" property="og:image"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" property="og:image:secure_url"/><meta content="image/jpeg" property="og:image:type"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="Jann Jaravata, multidisciplinary graphic designer" property="og:image:alt"/><meta content="summary_large_image" name="twitter:card"/><meta content="Projects | Jann Jaravata" name="twitter:title"/><meta content="Browse selected branding, social campaign, publication, web, presentation, retouching, and creative-system projects by graphic designer Jann Jaravata." name="twitter:description"/><meta content="https://jannjaravata.madebydesignlab.com/assets/og-jann-jaravata.jpg" name="twitter:image"/><meta content="Jann Jaravata, multidisciplinary graphic designer" name="twitter:image:alt"/><link href="https://jannjaravata.madebydesignlab.com/projects.html" rel="canonical"/><link href="https://jannjaravata.madebydesignlab.com/projects.html" hreflang="en-PH" rel="alternate"/><link href="assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="site.webmanifest" rel="manifest"/><link href="v1-11.css" rel="stylesheet"/><script id="structuredData" type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://jannjaravata.madebydesignlab.com/projects.html#webpage",
+  "url": "https://jannjaravata.madebydesignlab.com/projects.html",
+  "name": "Projects | Jann Jaravata",
+  "description": "Selected design projects by Jann Jaravata.",
+  "isPartOf": {
+    "@id": "https://jannjaravata.madebydesignlab.com/#website"
+  },
+  "author": {
+    "@id": "https://jannjaravata.madebydesignlab.com/#person"
+  },
+  "inLanguage": "en-PH"
+}</script></head>
 <body>
-  <header class="subpage-header">
-    <div class="shell subpage-header-inner">
-      <a class="subpage-brand" href="index.html"><span>JJ</span>Jann Jaravata</a>
-      <nav class="subpage-nav">
-        <a href="index.html">Overview</a>
-        <a href="index.html#work-finder">Capabilities</a>
-        <a class="active" href="projects.html">Projects</a>
-        <a href="cv.html">CV</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
-      <a class="subpage-action" href="https://bit.ly/JNBJ-Resume" target="_blank" rel="noreferrer">PDF Résumé ↗</a>
-    </div>
-  </header>
-
-  <main class="page-main">
-    <section class="page-hero">
-      <div class="shell page-hero-grid">
-        <div>
-          <span class="section-kicker">PROJECT ARCHIVE</span>
-          <h1>Selected work in one clear grid.</h1>
-          <span class="page-count" id="projectArchiveCount">Loading shared projects…</span>
-        </div>
-        <p>Browse projects from the same archive used by madebydesignlab.com. Select an item for a quick preview, then open its image gallery.</p>
-      </div>
-    </section>
-
-    <section class="projects-section">
-      <div class="shell projects-grid" id="projectsGrid">
-        <div class="projects-state"><strong>Loading shared projects…</strong><span>Checking the DesignLab project database.</span></div>
-      </div>
-    </section>
-  </main>
-
-  <div class="project-modal" id="projectPreviewModal" aria-hidden="true">
-    <button class="project-modal-backdrop" data-project-close aria-label="Close project preview"></button>
-    <section class="project-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-      <button class="project-preview-close" data-project-close aria-label="Close project preview">×</button>
-      <div class="project-preview-media" id="previewMedia"></div>
-      <div class="project-preview-copy">
-        <span class="project-preview-category" id="previewCategory"></span>
-        <h2 id="previewTitle"></h2>
-        <p id="previewDescription"></p>
-        <div class="project-preview-actions"><a id="previewGalleryLink" href="#">View image gallery ↗</a></div>
-      </div>
-    </section>
-  </div>
-
-  <aside class="visitor-float" aria-label="Portfolio visit count"><span class="visitor-float-dot"></span><span class="visitor-float-label">Portfolio visits</span><strong id="visitorCount">—</strong></aside>
-  <footer class="site-footer"><div class="shell footer-inner"><div><strong>Jann Jaravata</strong><span>Project archive</span></div><div><span>© 2026 Jann Nathaniel Jaravata</span><span>Shared with DesignLab Creative Studio</span></div></div></footer>
-
-  <script src="config.js"></script>
-  <script src="project-archive.js"></script>
-  <script src="visitor.js"></script>
-  <script src="projects.js"></script>
-  <script src="motion.js"></script>
+<header class="subpage-header">
+<div class="shell subpage-header-inner">
+<a class="subpage-brand" href="index.html"><span>JJ</span>Jann Jaravata</a>
+<nav class="subpage-nav">
+<a href="index.html">Overview</a>
+<a href="index.html#work-finder">Capabilities</a>
+<a class="active" href="projects.html">Projects</a>
+<a href="cv.html">CV</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+<a class="subpage-action" href="https://bit.ly/JNBJ-Resume" rel="noreferrer" target="_blank">PDF Résumé ↗</a>
+</div>
+</header>
+<main class="page-main">
+<section class="page-hero">
+<div class="shell page-hero-grid">
+<div>
+<span class="section-kicker">PROJECT ARCHIVE</span>
+<h1>Selected work in one clear grid.</h1>
+<span class="page-count" id="projectArchiveCount">Loading shared projects…</span>
+</div>
+<p>Browse projects from the same archive used by madebydesignlab.com. Select an item for a quick preview, then open its image gallery.</p>
+</div>
+</section>
+<section class="projects-section">
+<div class="shell projects-grid" id="projectsGrid">
+<div class="projects-state"><strong>Loading shared projects…</strong><span>Checking the DesignLab project database.</span></div>
+</div>
+</section>
+</main>
+<div aria-hidden="true" class="project-modal" id="projectPreviewModal">
+<button aria-label="Close project preview" class="project-modal-backdrop" data-project-close=""></button>
+<section aria-labelledby="previewTitle" aria-modal="true" class="project-preview-dialog" role="dialog">
+<button aria-label="Close project preview" class="project-preview-close" data-project-close="">×</button>
+<div class="project-preview-media" id="previewMedia"></div>
+<div class="project-preview-copy">
+<span class="project-preview-category" id="previewCategory"></span>
+<h2 id="previewTitle"></h2>
+<p id="previewDescription"></p>
+<div class="project-preview-actions"><a href="#" id="previewGalleryLink">View image gallery ↗</a></div>
+</div>
+</section>
+</div>
+<aside aria-label="Portfolio visit count" class="visitor-float"><span class="visitor-float-dot"></span><span class="visitor-float-label">Portfolio visits</span><strong id="visitorCount">—</strong></aside>
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Jann Jaravata</strong><span>Project archive</span></div><div><span>© 2026 Jann Nathaniel Jaravata</span><span>Project Archive · Version 1.11.0</span><span>Last updated July 28, 2026</span></div></div></footer>
+<script src="config.js"></script>
+<script src="project-archive.js"></script>
+<script src="visitor.js"></script>
+<script src="projects.js"></script>
+<script src="motion.js"></script>
 </body>
 </html>

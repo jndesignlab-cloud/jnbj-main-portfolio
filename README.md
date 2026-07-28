@@ -1,39 +1,40 @@
-# Jann Jaravata Portfolio v1.9.0
+# Jann Jaravata Personal Portfolio v1.11.0
 
-## Update focus
-- Enlarged and corrected the animated personal-record figures
-- Improved cover headline scale and readability
-- Removed the process section from capability modals
-- Darkened modal body copy for stronger contrast
-- Simplified project previews
-- Replaced case-study project pages with image-first project galleries
-- Reduced and aligned CV headings to avoid awkward line breaks
-- Preserved the shared DesignLab project database and visitor counter
+Custom domain:
 
-# Jann Jaravata Portfolio v1.8.0
+`jannjaravata.madebydesignlab.com`
 
-## Main improvements
-- Balanced 4 + 3 capability grid with no empty cell
-- Cover text repositioned so the portrait no longer overlaps it
-- Professional reveal animations and number count-up effects
-- New `projects.html` grid page using the same Apps Script project archive as madebydesignlab.com
-- Project preview modal with image, category, short description, skills, and full case-study link
-- New `cv.html` online CV page adapted from the DesignLab CV structure
-- Shared project fetching utility with short session caching
-- Updated navigation across the homepage, project archive, CV, and case-study pages
+## v1.11.0 changes
 
-## Shared archive
-All project pages use:
+- Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
+- Added the GitHub Pages `CNAME` file.
+- Added page-specific titles and descriptions.
+- Added canonical URLs.
+- Added Open Graph and Twitter social sharing metadata.
+- Added a 1200×630 social preview image.
+- Added Person, Website, ProfilePage, CollectionPage, and CreativeWork structured data.
+- Added dynamic project-page SEO updates.
+- Added `robots.txt` and `sitemap.xml`.
+- Added favicon and application icons.
+- Added `site.webmanifest`.
+- Added image dimensions and loading hints to reduce layout shifting.
 
-`API_URL?action=listProjects`
+## Required DNS
 
-Projects added or updated through the main DesignLab project database will appear here automatically.
+Create this record with your DNS provider:
 
-## Repository upload
-Upload all extracted files to the root of `jndesignlab-cloud/jnbj-main-portfolio`, replacing the current files.
+- Type: `CNAME`
+- Host/Name: `jannjaravata`
+- Target/Value: `jndesignlab-cloud.github.io`
 
-## v1.10.0 — Counter & CV Alignment Fix
-- Corrected animated counter spans so the values inherit the intended large typography.
-- Enlarged values on the homepage Personal Record and CV Output Snapshot.
-- Balanced the CV portrait and introduction area.
-- Standardized CV action-button height and alignment.
+Do not include `https://` in the DNS target.
+
+After uploading the extracted files to the repository root, open GitHub:
+
+**Repository Settings → Pages → Custom domain**
+
+Enter:
+
+`jannjaravata.madebydesignlab.com`
+
+Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.

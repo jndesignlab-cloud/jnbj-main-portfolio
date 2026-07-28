@@ -1,0 +1,17 @@
+/* v1.11.0 — SEO, custom domain, and footer versioning */
+.footer-inner > div:last-child {
+  gap: 4px;
+}
+.footer-inner > div:last-child span:nth-child(2) {
+  color: var(--text);
+  font-weight: 700;
+}
+.footer-inner > div:last-child span:nth-child(3) {
+  font-size: 10px;
+  opacity: .82;
+}
+@media (max-width: 680px) {
+  .footer-inner > div:last-child {
+    text-align: left;
+  }
+}
