@@ -31,3 +31,9 @@ Projects added or updated through the main DesignLab project database will appea
 
 ## Repository upload
 Upload all extracted files to the root of `jndesignlab-cloud/jnbj-main-portfolio`, replacing the current files.
+
+## v1.10.0 — Counter & CV Alignment Fix
+- Corrected animated counter spans so the values inherit the intended large typography.
+- Enlarged values on the homepage Personal Record and CV Output Snapshot.
+- Balanced the CV portrait and introduction area.
+- Standardized CV action-button height and alignment.

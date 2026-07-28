@@ -1,0 +1,112 @@
+/* v1.10.0 — counter size correction and CV hero alignment */
+
+/* The earlier label rules also matched the animated number spans.
+   Force counters to inherit the intended large type from their parent. */
+.record-stat .count-up,
+.cv-metric .count-up {
+  display: inline-block;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: baseline;
+}
+
+/* Main-page personal record values */
+.record-stat strong {
+  font-size: clamp(46px, 4.25vw, 64px);
+  font-weight: 800;
+  line-height: .9;
+}
+.record-stat > span {
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* CV introduction: keep the portrait, copy, contact line, and actions aligned */
+.cv-hero {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 38px;
+  align-items: center;
+  padding-top: 44px;
+  padding-bottom: 44px;
+}
+.cv-photo {
+  width: 220px;
+  height: 220px;
+  align-self: center;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(17, 27, 47, .06);
+}
+.cv-photo img {
+  object-position: center 28%;
+}
+.cv-hero > div:last-child {
+  min-width: 0;
+  align-self: center;
+}
+.cv-contact-line {
+  align-items: center;
+  row-gap: 8px;
+}
+.cv-actions {
+  align-items: stretch;
+  gap: 10px;
+}
+.cv-actions a,
+.cv-actions button {
+  height: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 0;
+}
+
+/* CV output values */
+.cv-metric {
+  min-height: 138px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cv-metric strong {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 1px;
+  color: var(--text);
+  font-size: clamp(44px, 4vw, 58px);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: -.06em;
+  white-space: nowrap;
+}
+.cv-metric > span {
+  margin-top: 13px;
+  color: #46546a;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .record-stat strong { font-size: clamp(42px, 6vw, 58px); }
+  .cv-hero { grid-template-columns: 190px minmax(0, 1fr); gap: 28px; }
+  .cv-photo { width: 190px; height: 190px; }
+}
+
+@media (max-width: 680px) {
+  .record-stat strong { font-size: 44px; }
+  .record-stat > span { font-size: 10px; }
+  .cv-hero { grid-template-columns: 1fr; gap: 20px; padding-top: 34px; padding-bottom: 34px; }
+  .cv-photo { width: 150px; height: 150px; }
+  .cv-actions { flex-direction: column; align-items: stretch; }
+  .cv-actions a,
+  .cv-actions button { width: 100%; }
+  .cv-metric strong { font-size: 48px; }
+}
