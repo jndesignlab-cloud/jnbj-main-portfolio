@@ -1,17 +1,21 @@
-# Jann Jaravata Portfolio v1.7.0
+# Jann Jaravata Portfolio v1.8.0
 
-## Compact capability modal update
+## Main improvements
+- Balanced 4 + 3 capability grid with no empty cell
+- Cover text repositioned so the portrait no longer overlaps it
+- Professional reveal animations and number count-up effects
+- New `projects.html` grid page using the same Apps Script project archive as madebydesignlab.com
+- Project preview modal with image, category, short description, skills, and full case-study link
+- New `cv.html` online CV page adapted from the DesignLab CV structure
+- Shared project fetching utility with short session caching
+- Updated navigation across the homepage, project archive, CV, and case-study pages
 
-- Reduced the Personal Record into a compact horizontal strip.
-- Replaced the long guided work section with a direct capability grid.
-- Added line icons for seven design capabilities.
-- Clicking a capability opens a modal explaining:
-  - the design area
-  - the process
-  - tools and workflow
-  - one random matching project from the shared DesignLab project archive
-- Added “Show another” for categories with multiple matching projects.
-- Sample projects still open through the existing personal case-study page.
-- Visitor counter and shared DesignLab Apps Script project source remain preserved.
+## Shared archive
+All project pages use:
 
-Upload all extracted files to the repository root.
+`API_URL?action=listProjects`
+
+Projects added or updated through the main DesignLab project database will appear here automatically.
+
+## Repository upload
+Upload all extracted files to the root of `jndesignlab-cloud/jnbj-main-portfolio`, replacing the current files.
