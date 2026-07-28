@@ -1,60 +1,52 @@
 window.PORTFOLIO_DATA = {
   skills: {
-    branding: {
-      label: 'Branding & Visual Identity',
-      title: 'I build identities that stay consistent beyond the logo.',
-      description: 'My branding work focuses on usable systems: clear visual direction, flexible applications, and enough structure to keep future materials recognizable and consistent.',
-      tasks: ['Translate context into a visual direction', 'Develop primary and supporting identity elements', 'Apply the system across print, social, and digital outputs'],
-      tools: ['Photoshop', 'Illustrator', 'Figma', 'Canva'],
-      projects: ['designlab-brand-system', 'finora-identity', 'designlab-downloads']
-    },
     social: {
-      label: 'Social Media & Campaigns',
-      title: 'I turn one campaign idea into a coordinated publishing system.',
-      description: 'I design social campaigns that can handle announcements, reminders, event coverage, carousels, and platform-specific materials without losing visual consistency.',
-      tasks: ['Establish the campaign direction and hierarchy', 'Create adaptable post and carousel formats', 'Prepare materials for ongoing publishing and revisions'],
-      tools: ['Photoshop', 'Canva', 'Meta platforms', 'Content planning'],
-      projects: ['panpacific-campaigns', 'panagpasangbay-2026', 'designlab-daily-content']
-    },
-    web: {
-      label: 'Web & Digital',
-      title: 'I design digital experiences that are clear before they are clever.',
-      description: 'My web work combines interface design, content organization, responsive behavior, and practical implementation for websites and lightweight web applications.',
-      tasks: ['Structure pages and user flows', 'Design responsive interfaces and visual systems', 'Refine implementation through testing and feedback'],
-      tools: ['Figma', 'HTML/CSS/JS', 'Supabase', 'GitHub'],
-      projects: ['designlab-portfolio', 'planora', 'pace-website', 'finora-app']
+      label: 'Social Media Materials',
+      title: 'Social content designed for clear and consistent publishing.',
+      description: 'I create posters, announcements, carousels, campaign visuals, and platform-ready content that can stay consistent across an ongoing social media calendar.',
+      tasks: ['Clarify the message and campaign direction', 'Create adaptable post formats', 'Prepare files for publishing and revisions'],
+      tools: ['Photoshop', 'Canva', 'Figma', 'Content planning'],
+      projects: []
     },
     print: {
-      label: 'Print & Publications',
-      title: 'I organize information into layouts that remain readable and production-ready.',
-      description: 'I handle publications and print materials with attention to hierarchy, format, consistency, and the practical limitations of physical production.',
-      tasks: ['Plan page hierarchy and information flow', 'Build reusable layout systems', 'Prepare files for print production and revisions'],
+      label: 'Print Materials',
+      title: 'Print layouts prepared for both readability and production.',
+      description: 'I design brochures, flyers, catalogs, event materials, signage, and other printed outputs with clear hierarchy and practical production requirements in mind.',
+      tasks: ['Organize the information hierarchy', 'Build the print layout', 'Prepare production-ready files'],
       tools: ['Photoshop', 'InDesign', 'Illustrator', 'Print production'],
-      projects: ['university-publications', 'event-collateral', 'client-catalogs']
+      projects: []
+    },
+    packaging: {
+      label: 'Packaging Materials',
+      title: 'Packaging visuals that connect the product and the brand.',
+      description: 'I develop labels, boxes, pouches, sleeves, and supporting product graphics while balancing brand consistency, required information, and the physical format.',
+      tasks: ['Review the product and packaging format', 'Create the visual direction and layout', 'Prepare artwork for mockup or production'],
+      tools: ['Illustrator', 'Photoshop', 'Mockups', 'Print preparation'],
+      projects: []
+    },
+    web: {
+      label: 'Website',
+      title: 'Web experiences that keep content clear and easy to navigate.',
+      description: 'I design responsive portfolio sites, landing pages, service websites, and lightweight web applications with practical structure and clean visual direction.',
+      tasks: ['Plan the content and page flow', 'Design responsive layouts', 'Refine implementation and interaction'],
+      tools: ['Figma', 'HTML/CSS/JavaScript', 'GitHub', 'Supabase'],
+      projects: []
     },
     presentation: {
-      label: 'Presentation Design',
-      title: 'I turn dense information into slides an audience can actually follow.',
-      description: 'I develop presentation systems for research, conferences, institutional reporting, and speaker content with emphasis on pacing and visual hierarchy.',
-      tasks: ['Simplify and sequence information', 'Create a consistent slide language', 'Build charts, diagrams, and supporting visuals'],
+      label: 'Presentations',
+      title: 'Presentation slides that make dense information easier to follow.',
+      description: 'I create research, conference, institutional, educational, and business presentations with clear pacing, hierarchy, diagrams, and supporting visuals.',
+      tasks: ['Simplify and sequence the information', 'Create a consistent slide system', 'Build supporting charts and visuals'],
       tools: ['Google Slides', 'PowerPoint', 'Photoshop', 'Figma'],
-      projects: ['research-brief-slides', 'pirc-presentation-system', 'university-decks']
+      projects: []
     },
-    systems: {
-      label: 'Creative Systems & Automation',
-      title: 'I build small systems when design work needs a better workflow.',
-      description: 'These projects combine interface thinking with operational needs: forms, trackers, dashboards, automated emails, certificates, and content planning tools.',
-      tasks: ['Map the real workflow and pain points', 'Design an understandable interface', 'Connect data, automation, and status tracking'],
-      tools: ['Apps Script', 'Google Sheets', 'JavaScript', 'Supabase'],
-      projects: ['osc-request-system', 'designlab-task-tracker', 'pirc-evaluation-system']
-    },
-    photo: {
-      label: 'Photo Editing & Retouching',
-      title: 'I refine images while keeping the result believable and production-ready.',
-      description: 'My retouching work covers portraits, background replacement, compositing, cleanup, and image preparation for campaigns and publications.',
-      tasks: ['Clean and balance the source image', 'Improve lighting, color, and presentation', 'Prepare final files for the intended layout or platform'],
-      tools: ['Photoshop', 'Camera Raw', 'Masking', 'Compositing'],
-      projects: ['studio-portrait-retouching', 'university-photo-enhancements', 'product-retouching']
+    custom: {
+      label: 'Custom Project',
+      title: 'A flexible category for work that does not fit a standard format.',
+      description: 'This includes brand systems, creative workflows, automation tools, photo retouching, digital products, and other one-off requirements that need a tailored approach.',
+      tasks: ['Understand the specific requirement', 'Define the most practical solution', 'Design, refine, and prepare the final output'],
+      tools: ['Photoshop', 'Figma', 'Apps Script', 'JavaScript'],
+      projects: []
     }
   }
 };

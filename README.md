@@ -1,10 +1,10 @@
-# Jann Jaravata Personal Portfolio v1.11.0
+# Jann Jaravata Personal Portfolio v1.12.0
 
 Custom domain:
 
 `jannjaravata.madebydesignlab.com`
 
-## v1.11.0 changes
+## v1.12.0 changes
 
 - Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
 - Added the GitHub Pages `CNAME` file.
@@ -38,3 +38,12 @@ Enter:
 `jannjaravata.madebydesignlab.com`
 
 Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
+
+
+## v1.12.0 interface refinement
+
+- Simplified the homepage capability categories to six clear choices.
+- Centered the category icons and labels.
+- Added numbered categories and an explicit “View details” hint.
+- Reduced the Personal Record number size and spacing to prevent overlap.
+- Preserved the shared DesignLab project archive, SEO files, and custom domain configuration.
