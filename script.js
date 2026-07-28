@@ -67,13 +67,29 @@ async function openSkillModal(key, sourceButton) {
   modalIcon.innerHTML = skillIcons[key] || '';
   sampleProject.innerHTML = '<div class="sample-loading">Loading a related project…</div>';
   modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); modal.querySelector('.modal-close')?.focus();
-  const url = new URL(location.href); url.searchParams.set('skill', key); history.replaceState(null,'',url);
   try { if (!sharedProjects.length) sharedProjects = await ProjectArchive.load(); currentMatches = getMatches(key); renderSample(pickRandomProject()); }
   catch (_) { currentMatches = []; sampleProject.innerHTML = '<div class="sample-empty"><strong>Archive temporarily unavailable.</strong><span>Please try the Projects page again later.</span></div>'; }
 }
-function closeSkillModal() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); lastFocusedElement?.focus(); }
+function clearSkillParameter() {
+  const url = new URL(location.href);
+  if (!url.searchParams.has('skill')) return;
+  url.searchParams.delete('skill');
+  history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+}
+function closeSkillModal() {
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  clearSkillParameter();
+  lastFocusedElement?.focus();
+}
 serviceButtons.forEach(button => button.addEventListener('click', () => openSkillModal(button.dataset.skill, button)));
 document.querySelectorAll('[data-modal-close]').forEach(button => button.addEventListener('click', closeSkillModal));
 shuffleButton.addEventListener('click', () => renderSample(pickRandomProject()));
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeSkillModal(); });
-ProjectArchive.load().then(projects => { sharedProjects = projects; const requestedSkill = new URLSearchParams(location.search).get('skill'); const requestedButton = serviceButtons.find(button => button.dataset.skill === requestedSkill); if (requestedButton) openSkillModal(requestedSkill, requestedButton); }).catch(() => {});
+clearSkillParameter();
+ProjectArchive.load()
+  .then(projects => {
+    sharedProjects = projects;
+  })
+  .catch(() => {});
