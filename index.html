@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="v1-6.css" />
+  <link rel="stylesheet" href="v1-7.css" />
 </head>
 <body>
   <main id="top">
@@ -57,96 +57,97 @@
 
         <nav class="profile-tabs" aria-label="Portfolio sections">
           <a class="active" href="#profile">Overview</a>
-          <a href="#work-finder">Work by Skill</a>
-          <a href="#experience">Experience</a>
+          <a href="#work-finder">Work</a>
           <a href="#contact">Contact</a>
           <a class="tab-resume" href="https://bit.ly/JNBJ-Resume" target="_blank" rel="noreferrer">Résumé ↗</a>
         </nav>
       </div>
     </header>
 
-
     <section class="personal-record" aria-labelledby="recordTitle">
-      <div class="shell record-shell">
-        <div class="record-intro">
-          <div>
-            <span class="section-kicker">A PERSONAL RECORD</span>
-            <h2 id="recordTitle">What eight years of creative work have added up to.</h2>
-          </div>
-          <p>These numbers came from university deadlines, client revisions, independent experiments, and projects I kept improving long after the first draft.</p>
+      <div class="shell record-compact">
+        <div class="record-copy">
+          <span class="section-kicker">A PERSONAL RECORD</span>
+          <h2 id="recordTitle">Eight years, measured through work I actually delivered.</h2>
         </div>
-        <div class="record-grid">
-          <article><strong>8<sup>+</sup></strong><h3>Years of Creative Experience</h3><p>Institutional, client, freelance, and independent design work.</p></article>
-          <article><strong>3,000<sup>+</sup></strong><h3>Social Media Visuals</h3><p>Campaign posts, announcements, carousels, and content materials.</p></article>
-          <article><strong>30<sup>+</sup></strong><h3>Client & Studio Projects</h3><p>Brand, publication, campaign, website, and digital-system projects.</p></article>
-          <article><strong>10<sup>+</sup></strong><h3>Businesses & Organizations</h3><p>Teams and clients supported through design, content, and digital work.</p></article>
+        <div class="record-stat">
+          <strong>8<sup>+</sup></strong>
+          <span>Years creating</span>
+        </div>
+        <div class="record-stat">
+          <strong>3,000<sup>+</sup></strong>
+          <span>Social visuals</span>
+        </div>
+        <div class="record-stat">
+          <strong>30<sup>+</sup></strong>
+          <span>Projects handled</span>
+        </div>
+        <div class="record-stat">
+          <strong>10<sup>+</sup></strong>
+          <span>Organizations supported</span>
         </div>
       </div>
     </section>
 
-    <section class="work-finder" id="work-finder">
+    <section class="work-finder compact-work-finder" id="work-finder">
       <div class="shell">
-        <div class="finder-intro">
+        <div class="finder-intro finder-direct">
           <span class="section-kicker">EXPLORE MY WORK</span>
-          <h2>Do you need a designer for…</h2>
-          <p>Choose one area and follow the page from relevant experience to projects loaded from the same DesignLab archive.</p>
+          <h2>What do you need designed?</h2>
+          <p>Choose an area. I’ll show you how I approach it and one related project from my shared DesignLab archive.</p>
         </div>
 
-        <div class="flow-guide" aria-label="Portfolio browsing flow">
-          <span class="flow-step active" data-flow-step="1"><b>1</b> Choose a skill</span>
-          <i aria-hidden="true"></i>
-          <span class="flow-step" data-flow-step="2"><b>2</b> Review experience</span>
-          <i aria-hidden="true"></i>
-          <span class="flow-step" data-flow-step="3"><b>3</b> Open a project</span>
+        <div class="service-grid" aria-label="Choose a design capability">
+          <button class="service-item" data-skill="branding" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM9 9h6v6H9z"/></svg>
+            </span>
+            <span class="service-name">Brand Identity</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="social" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 17v3m8-3v3M8 11h3m2 0h3"/></svg>
+            </span>
+            <span class="service-name">Social Campaign</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="web" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 9h18M7 7h.01M10 7h.01"/></svg>
+            </span>
+            <span class="service-name">Website or App</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="print" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3h10v5H7zM5 8h14v9H5zM7 14h10v7H7z"/></svg>
+            </span>
+            <span class="service-name">Print Publication</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="presentation" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM8 20l4-4 4 4M8 9h3m2 0h3M8 12h8"/></svg>
+            </span>
+            <span class="service-name">Presentation</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="systems" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6zM10 7h4M7 10v4m10-4v4m-7 3h4"/></svg>
+            </span>
+            <span class="service-name">Creative System</span>
+            <span class="service-arrow">↗</span>
+          </button>
+          <button class="service-item" data-skill="photo" type="button">
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 6h5l2-2h4l2 2h5v14H3zM12 10a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+            </span>
+            <span class="service-name">Photo Retouching</span>
+            <span class="service-arrow">↗</span>
+          </button>
         </div>
-
-        <div class="skill-chooser-wrap">
-          <div class="skill-chooser-head">
-            <span>CHOOSE AN AREA</span>
-            <strong id="activeSkillSummary">Showing Brand Identity</strong>
-          </div>
-          <div class="skill-chooser" role="tablist" aria-label="Choose a design skill">
-          <button class="skill-choice active" data-skill="branding" role="tab" aria-selected="true">Brand Identity</button>
-          <button class="skill-choice" data-skill="social" role="tab" aria-selected="false">Social Campaign</button>
-          <button class="skill-choice" data-skill="web" role="tab" aria-selected="false">Website or App</button>
-          <button class="skill-choice" data-skill="print" role="tab" aria-selected="false">Print Publication</button>
-          <button class="skill-choice" data-skill="presentation" role="tab" aria-selected="false">Presentation</button>
-          <button class="skill-choice" data-skill="systems" role="tab" aria-selected="false">Creative System</button>
-          <button class="skill-choice" data-skill="photo" role="tab" aria-selected="false">Photo Retouching</button>
-          </div>
-        </div>
-
-        <section class="experience-view content-transition" id="experience" role="tabpanel" aria-live="polite">
-          <div class="section-flow-label"><b>02</b><span>Relevant experience</span></div>
-          <div class="experience-main">
-            <span class="experience-label" id="experienceLabel">BRANDING & VISUAL IDENTITY</span>
-            <h3 id="experienceTitle">I build identities that stay consistent beyond the logo.</h3>
-            <p id="experienceDescription"></p>
-          </div>
-
-          <div class="experience-details">
-            <div class="experience-column">
-              <small>WHAT I HANDLE</small>
-              <ul id="experienceTasks"></ul>
-            </div>
-            <div class="experience-column">
-              <small>TOOLS & WORKFLOW</small>
-              <div class="tool-list" id="experienceTools"></div>
-            </div>
-          </div>
-          <a class="jump-projects" href="#projectGrid">View matching projects ↓</a>
-        </section>
-
-        <div class="projects-heading content-transition" id="projectsHeading">
-          <div>
-            <div class="section-flow-label project-flow-label"><b>03</b><span>Projects you can open</span></div>
-            <span class="section-kicker">RELATED PROJECTS</span>
-            <h3 id="projectsTitle">Branding & Visual Identity</h3>
-          </div>
-          <div class="project-heading-status"><span id="projectCount">Loading projects…</span><small id="projectSourceStatus">Synced with the DesignLab archive</small></div>
-        </div>
-
-        <div class="project-grid content-transition" id="projectGrid"><div class="project-state"><strong>Loading shared projects…</strong><span>The same project archive used by madebydesignlab.com is being checked.</span></div></div>
       </div>
     </section>
 
@@ -176,6 +177,47 @@
       </div>
     </section>
   </main>
+
+  <div class="skill-modal" id="skillModal" aria-hidden="true">
+    <button class="skill-modal-backdrop" type="button" data-modal-close aria-label="Close dialog"></button>
+    <section class="skill-dialog" role="dialog" aria-modal="true" aria-labelledby="modalSkillTitle">
+      <header class="skill-dialog-header">
+        <div class="modal-identity">
+          <span class="modal-icon" id="modalSkillIcon" aria-hidden="true"></span>
+          <div>
+            <span class="modal-kicker">HOW I WORK</span>
+            <h2 id="modalSkillTitle">Brand Identity</h2>
+          </div>
+        </div>
+        <button class="modal-close" type="button" data-modal-close aria-label="Close dialog">×</button>
+      </header>
+
+      <div class="skill-dialog-body">
+        <div class="modal-overview">
+          <p id="modalSkillDescription"></p>
+          <div class="modal-tools" id="modalSkillTools"></div>
+        </div>
+
+        <div class="modal-process">
+          <span class="modal-section-label">MY PROCESS</span>
+          <ol id="modalProcessList"></ol>
+        </div>
+
+        <div class="modal-sample">
+          <div class="modal-sample-heading">
+            <div>
+              <span class="modal-section-label">RANDOM SAMPLE</span>
+              <h3>A related project from my archive</h3>
+            </div>
+            <button id="shuffleSample" type="button">Show another ↻</button>
+          </div>
+          <div class="sample-project" id="sampleProject">
+            <div class="sample-loading">Loading a related project…</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <aside class="visitor-float" aria-label="Portfolio visit count" title="Recorded portfolio visits">
     <span class="visitor-float-dot" aria-hidden="true"></span>
