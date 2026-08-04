@@ -1,0 +1,174 @@
+/* v1.15.0 — direct homepage project grid */
+
+/* The project archive begins immediately after the Personal Record. */
+.home-projects {
+  padding: 54px 0 62px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.home-projects-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.home-projects-head h2 {
+  margin: 0;
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+
+.home-projects-head > a,
+.home-projects-footer > a {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.home-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px 18px;
+}
+
+.home-project-tile {
+  min-width: 0;
+  display: block;
+  color: var(--text);
+}
+
+.home-project-image {
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #eef2f8;
+}
+
+.home-project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+
+.home-project-image > span {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.home-project-tile:hover .home-project-image img,
+.home-project-tile:focus-visible .home-project-image img {
+  transform: scale(1.025);
+}
+
+.home-project-tile:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+.home-project-copy {
+  padding: 13px 1px 0;
+}
+
+.home-project-copy > span {
+  color: var(--blue);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.home-project-copy h3 {
+  margin: 7px 0 6px;
+  font-size: 18px;
+  line-height: 1.18;
+  letter-spacing: -.035em;
+}
+
+.home-project-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.58;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-projects-footer {
+  display: none;
+  margin-top: 30px;
+}
+
+.home-project-state {
+  grid-column: 1 / -1;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+
+.home-project-state strong {
+  color: var(--text);
+}
+
+.home-project-state a {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Remove obsolete capability UI if an old page is cached. */
+.compact-work-finder,
+.skill-modal {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .home-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .home-projects {
+    padding: 42px 0 48px;
+  }
+
+  .home-projects-head {
+    align-items: flex-start;
+  }
+
+  .home-projects-head > a {
+    display: none;
+  }
+
+  .home-project-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .home-projects-footer {
+    display: block;
+  }
+
+  .home-project-copy h3 {
+    font-size: 17px;
+  }
+}

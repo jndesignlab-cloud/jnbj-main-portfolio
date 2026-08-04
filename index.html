@@ -87,7 +87,7 @@
       "inLanguage": "en-PH"
     }
   ]
-}</script><link href="v1-12.css" rel="stylesheet"/><link href="v1-13.css" rel="stylesheet"/><link href="v1-14.css" rel="stylesheet"/></head>
+}</script><link href="v1-12.css" rel="stylesheet"/><link href="v1-13.css" rel="stylesheet"/><link href="v1-14.css" rel="stylesheet"/><link href="v1-15.css" rel="stylesheet"/></head>
 <body>
 <main id="top">
 <header class="profile-header" id="profile">
@@ -127,14 +127,7 @@
 </div>
 </div>
 </div>
-<nav aria-label="Portfolio sections" class="profile-tabs">
-<a class="active" href="#profile">Overview</a>
-<a href="#work-finder">Capabilities</a>
-<a href="projects.html">Projects</a>
-<a href="cv.html">Online CV</a>
-<a href="#contact">Contact</a>
-<a class="tab-resume" href="https://bit.ly/JNBJ-Resume" rel="noreferrer" target="_blank">PDF Résumé ↗</a>
-</nav>
+<nav aria-label="Portfolio sections" class="profile-tabs"><a class="active" href="#profile">Overview</a><a href="#selected-projects">Projects</a><a href="cv.html">Online CV</a><a href="#contact">Contact</a><a class="tab-resume" href="https://bit.ly/JNBJ-Resume" rel="noreferrer" target="_blank">PDF Résumé ↗</a></nav>
 </div>
 </header>
 <section aria-labelledby="recordTitle" class="personal-record motion-section">
@@ -161,17 +154,22 @@
 </div>
 </div>
 </section>
-<section class="work-finder compact-work-finder motion-section" id="work-finder">
+<section aria-labelledby="selectedProjectsTitle" class="home-projects motion-section" id="selected-projects">
 <div class="shell">
-<div class="finder-intro finder-direct">
-<span class="section-kicker">WHAT I CAN CREATE</span>
-<h2>What can I help you create?</h2>
-<p>Choose a category to see a short overview, the tools I use, and one related sample from my project archive.</p>
+<div class="home-projects-head">
+<div>
+<span class="section-kicker">SELECTED PROJECTS</span>
+<h2 id="selectedProjectsTitle">Recent work.</h2>
 </div>
-<div aria-label="Choose a design capability" class="service-grid"><button aria-label="View details for Social Media Materials" class="service-item" data-skill="social" type="button"><span class="service-number">01</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M4 6h16v12H4zM8 10h8M8 14h5M7 21h10"></path></svg></span><span class="service-name">Social Media Materials</span><span class="service-hint">View details</span></button><button aria-label="View details for Print Materials" class="service-item" data-skill="print" type="button"><span class="service-number">02</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M7 3h10v5H7zM5 8h14v9H5zM7 14h10v7H7z"></path></svg></span><span class="service-name">Print Materials</span><span class="service-hint">View details</span></button><button aria-label="View details for Packaging Materials" class="service-item" data-skill="packaging" type="button"><span class="service-number">03</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4zM4 7v10l8 4 8-4V7M12 11v10"></path></svg></span><span class="service-name">Packaging Materials</span><span class="service-hint">View details</span></button><button aria-label="View details for Website" class="service-item" data-skill="web" type="button"><span class="service-number">04</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M3 5h18v14H3zM3 9h18M7 7h.01M10 7h.01"></path></svg></span><span class="service-name">Website</span><span class="service-hint">View details</span></button><button aria-label="View details for Presentations" class="service-item" data-skill="presentation" type="button"><span class="service-number">05</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M4 4h16v12H4zM8 20l4-4 4 4M8 9h3m2 0h3M8 12h8"></path></svg></span><span class="service-name">Presentations</span><span class="service-hint">View details</span></button><button aria-label="View details for Custom Project" class="service-item" data-skill="custom" type="button"><span class="service-number">06</span><span aria-hidden="true" class="service-icon"><svg viewbox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="service-name">Custom Project</span><span class="service-hint">View details</span></button></div>
-<div class="capability-footer">
-<span>Prefer to browse everything at once?</span>
-<a href="projects.html">View all projects ↗</a>
+<a href="projects.html">View More Projects ↗</a>
+</div>
+<div aria-live="polite" class="home-project-grid" id="homeProjectGrid">
+<div class="home-project-state">
+<strong>Loading projects…</strong>
+</div>
+</div>
+<div class="home-projects-footer">
+<a href="projects.html">View More Projects ↗</a>
 </div>
 </div>
 </section>
@@ -200,28 +198,7 @@
 </div>
 </section>
 </main>
-<div aria-hidden="true" class="skill-modal" id="skillModal">
-<button aria-label="Close dialog" class="skill-modal-backdrop" data-modal-close="" type="button"></button>
-<section aria-labelledby="modalSkillTitle" aria-modal="true" class="skill-dialog" role="dialog">
-<header class="skill-dialog-header">
-<div class="modal-identity">
-<span aria-hidden="true" class="modal-icon" id="modalSkillIcon"></span>
-<div><span class="modal-kicker">HOW I WORK</span><h2 id="modalSkillTitle">Brand Identity</h2></div>
-</div>
-<button aria-label="Close dialog" class="modal-close" data-modal-close="" type="button">×</button>
-</header>
-<div class="skill-dialog-body">
-<div class="modal-overview"><p id="modalSkillDescription"></p><div class="modal-tools" id="modalSkillTools"></div></div>
-<div class="modal-sample">
-<div class="modal-sample-heading">
-<div><span class="modal-section-label">RANDOM SAMPLE</span><h3>A related project from my archive</h3></div>
-<button id="shuffleSample" type="button">Show another ↻</button>
-</div>
-<div class="sample-project" id="sampleProject"><div class="sample-loading">Loading a related project…</div></div>
-</div>
-</div>
-</section>
-</div>
+
 <aside aria-label="Portfolio visit count" class="visitor-float visitor-float-left" title="Personal portfolio visits">
 <span aria-hidden="true" class="visitor-float-dot"></span><span class="visitor-float-label">Portfolio visits</span><strong id="visitorCount">—</strong>
 </aside>
@@ -232,11 +209,11 @@
 </svg></a><a aria-label="Visit DesignLab Creative Studio" class="social-link designlab-link" href="https://www.madebydesignlab.com" rel="noopener noreferrer" target="_blank" title="Visit DesignLab Creative Studio"><img alt="" aria-hidden="true" src="assets/designlab-float-logo.webp"/></a></nav><footer class="site-footer">
 <div class="shell footer-inner">
 <div><strong>Jann Jaravata</strong><span>Multidisciplinary Graphic Designer</span></div>
-<div><span>© 2026 Jann Nathaniel Jaravata</span><span>Personal Portfolio · Version 1.14.1</span><span>Last updated July 28, 2026</span></div>
+<div><span>© 2026 Jann Nathaniel Jaravata</span><span>Personal Portfolio · Version 1.15.0</span><span>Last updated August 4, 2026</span></div>
 </div>
 </footer>
 <script src="config.js"></script>
-<script src="project-data.js"></script>
+
 <script src="project-archive.js"></script>
 <script src="visitor.js"></script>
 <script src="script.js"></script>

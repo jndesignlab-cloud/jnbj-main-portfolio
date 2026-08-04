@@ -1,10 +1,10 @@
-# Jann Jaravata Personal Portfolio v1.14.1
+# Jann Jaravata Personal Portfolio v1.15.0
 
 Custom domain:
 
 `jannjaravata.madebydesignlab.com`
 
-## v1.14.1 changes
+## v1.15.0 changes
 
 - Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
 - Added the GitHub Pages `CNAME` file.
@@ -40,7 +40,7 @@ Enter:
 Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 
 
-## v1.14.1 interface refinement
+## v1.15.0 interface refinement
 
 - Simplified the homepage capability categories to six clear choices.
 - Centered the category icons and labels.
@@ -49,7 +49,7 @@ Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 - Preserved the shared DesignLab project archive, SEO files, and custom domain configuration.
 
 
-## v1.14.1 refinements
+## v1.15.0 refinements
 
 - Converted the About My Practice section into one reading column.
 - Moved the personal portfolio visit counter to the lower-left corner.
@@ -61,7 +61,7 @@ Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 - Forced capability, project-preview, and CV-detail modals into clear one-column layouts.
 
 
-## v1.14.1 corrections
+## v1.15.0 corrections
 
 - Re-aligned the About My Practice and final contact sections within the site shell.
 - Reduced headline widths and added responsive wrapping to stop horizontal clipping.
@@ -71,9 +71,19 @@ Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 - Preserved the main DesignLab counter and its existing total.
 
 
-## v1.14.1 bug fix
+## v1.15.0 bug fix
 
 - Removed capability modal state from the page URL.
 - Disabled automatic modal reopening after refresh.
 - Automatically clears old `?skill=` parameters left by previous versions.
 - Capability modals now open only after a visitor deliberately clicks a category.
+
+
+## v1.15.0 — direct project homepage
+
+- Removed the homepage capability/category chooser.
+- Removed the capability modal and random project sample.
+- Added six shared-database projects immediately below the Personal Record.
+- Added a direct View More Projects link.
+- Removed visible instructional/helper copy from the homepage, Projects page, Project Gallery, and CV capability section.
+- Preserved the shared DesignLab project archive, separate portfolio counter, social links, SEO, CNAME, CV, and image-gallery navigation.
