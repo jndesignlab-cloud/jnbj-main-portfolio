@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://madebydesignlab.com/</loc><lastmod>2026-07-28</lastmod></url>
+  <url><loc>https://madebydesignlab.com/creator.html</loc><lastmod>2026-07-28</lastmod></url>
+  <url><loc>https://madebydesignlab.com/projects.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/services.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/contact.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/insights.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/cv.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/insights/daily-grind-behind-the-work/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/insights/building-an-internal-creative-request-system/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/insights/from-personal-tool-to-digital-product/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://madebydesignlab.com/insights/what-60-days-of-design-taught-me/</loc><lastmod>2026-07-17</lastmod></url>
   <url>
-    <loc>https://jannjaravata.madebydesignlab.com/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://jannjaravata.madebydesignlab.com/projects.html</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://jannjaravata.madebydesignlab.com/cv.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://madebydesignlab.com/downloads.html</loc>
   </url>
 </urlset>

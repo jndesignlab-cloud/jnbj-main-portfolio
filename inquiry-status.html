@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Securely check the current status of a DesignLab Creative Studio project inquiry." name="description"/>
+<meta content="noindex,nofollow" name="robots"/>
+<title>Track an Inquiry | DesignLab Creative Studio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=3.12.0" rel="stylesheet"/>
+<script>
+    (function () {
+      const validThemes = ["blue", "light"];
+      let selectedTheme = "light";
+      try {
+        const savedTheme = localStorage.getItem("designlab-theme");
+        if (validThemes.includes(savedTheme)) selectedTheme = savedTheme;
+      } catch (error) {}
+      document.documentElement.dataset.theme = selectedTheme;
+    })();
+  </script>
+</head>
+<body class="signal-theme editorial-system unified-page">
+<header class="site-header signal-header rp-header">
+<div class="rp-header-inner">
+<a aria-label="DesignLab Creative Studio home" class="rp-brand" href="index.html"><img alt="DesignLab Creative Studio" src="assets/designlab-header-logo.webp"/></a>
+<nav aria-label="Primary navigation" class="nav-links rp-nav"><a href="projects.html">Work</a><a href="services.html">Services</a><a href="downloads.html">Downloads</a><a href="insights.html">Notes</a><a href="creator.html">Creator</a></nav>
+<a class="signal-header-cta rp-header-cta" href="contact.html?source=site-header">Start a project</a>
+</div>
+</header>
+<main class="tracking-page section-pad editorial-tracking-page">
+<section class="tracking-hero">
+<div>
+<p class="signal-kicker">Inquiry Tracking</p>
+<h1>Track your inquiry.</h1>
+</div>
+<p>Enter your reference number and submitted email address.</p>
+</section>
+<section class="tracking-layout">
+<aside class="tracking-info-panel">
+<p class="eyebrow">Secure lookup</p>
+<h2>Secure inquiry lookup</h2>
+<p>Both details must match before a record is shown.</p>
+<div class="tracking-info-list">
+<article><span>01</span><div><strong>Find your reference</strong><p>Find the <code>INQ-</code> number in your confirmation email.</p></div></article>
+<article><span>02</span><div><strong>Use the same email</strong><p>Use the email entered during submission.</p></div></article>
+<article><span>03</span><div><strong>View live status</strong><p>View the latest recorded status.</p></div></article>
+</div>
+</aside>
+<section class="tracking-card-shell">
+<div class="tracking-form-heading">
+<p class="eyebrow">Track a project inquiry</p>
+<h2>Enter your request details</h2>
+<p>Both fields are required.</p>
+</div>
+<form class="tracking-form" id="trackingForm" novalidate="">
+<label>
+<span>Inquiry reference *</span>
+<input autocomplete="off" id="trackingReference" maxlength="40" name="inquiryId" placeholder="INQ-20260624-ABC123" required="" type="text"/>
+</label>
+<label>
+<span>Email address *</span>
+<input autocomplete="email" id="trackingEmail" maxlength="160" name="email" placeholder="name@example.com" required="" type="email"/>
+</label>
+<button class="btn btn-primary" id="trackingSubmit" type="submit">Check Inquiry Status ↗</button>
+<p aria-live="polite" class="tracking-message" id="trackingMessage" role="status"></p>
+</form>
+<section aria-live="polite" class="tracking-result" hidden="" id="trackingResult">
+<div class="tracking-result-header">
+<div>
+<p class="eyebrow">Current inquiry record</p>
+<h2 id="trackingResultId">—</h2>
+</div>
+<span class="tracking-status-badge" id="trackingStatusBadge">New</span>
+</div>
+<p class="tracking-status-message" id="trackingStatusMessage"></p>
+<ol aria-label="Inquiry progress" class="tracking-timeline">
+<li data-stage="1"><span>1</span><div><strong>Received</strong><p>Your inquiry was saved.</p></div></li>
+<li data-stage="2"><span>2</span><div><strong>Review</strong><p>Scope and availability are checked.</p></div></li>
+<li data-stage="3"><span>3</span><div><strong>Next action</strong><p>Details, quotation, or approval.</p></div></li>
+<li data-stage="4"><span>4</span><div><strong>Active</strong><p>Scheduled or in progress.</p></div></li>
+<li data-stage="5"><span>5</span><div><strong>Final stage</strong><p>Completed, delivered, or closed.</p></div></li>
+</ol>
+<div class="tracking-summary-grid">
+<article><span>Submitted</span><strong id="trackingCreatedAt">—</strong></article>
+<article><span>Service</span><strong id="trackingService">—</strong></article>
+<article><span>Package / Project</span><strong id="trackingPackage">—</strong></article>
+<article><span>Budget</span><strong id="trackingBudget">—</strong></article>
+<article><span>Preferred timeline</span><strong id="trackingTimeline">—</strong></article>
+<article><span>Preferred contact</span><strong id="trackingContact">—</strong></article>
+</div>
+<div class="tracking-message-card">
+<span>Submitted project message</span>
+<p id="trackingProjectMessage">—</p>
+</div>
+<div class="tracking-result-actions">
+<a class="btn btn-soft" href="mailto:jannjaravata@gmail.com">Contact DesignLab</a>
+<a class="btn btn-primary" href="contact.html">Submit Another Inquiry ↗</a>
+</div>
+</section>
+</section>
+</section>
+</main>
+<div aria-label="Portfolio appearance" class="theme-dock">
+<div aria-label="Choose website theme" class="theme-switcher" role="group">
+<button aria-label="Use Blue Mode" data-theme-choice="blue" title="Blue Mode" type="button"><span class="theme-swatch theme-swatch-blue"></span><span>Blue</span></button>
+<button aria-label="Use Light Mode" data-theme-choice="light" title="Light Mode" type="button"><span class="theme-swatch theme-swatch-light"></span><span>Light</span></button>
+</div>
+</div>
+<footer class="footer compact-footer unified-footer editorial-footer">
+<div class="footer-brand-block"><strong>DesignLab Creative Studio</strong><span>Independent creative practice of Jann Nathaniel Jaravata.</span></div>
+<div><p>© <span id="year"></span> Jann Nathaniel Jaravata</p><p class="footer-meta">Version <span id="siteVersion"></span> · Last edit: <span id="lastEdit"></span></p></div>
+</footer>
+<script src="config.js?v=3.12.0"></script>
+<script src="theme.js?v=3.12.0"></script>
+<script src="navigation.js?v=3.12.0"></script>
+<script src="inquiry-status.js?v=3.12.0"></script>
+<script src="reveal.js?v=3.12.0"></script></body>
+</html>

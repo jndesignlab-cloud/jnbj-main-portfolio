@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Internal Creative Request System | DesignLab</title><meta content="A behind-the-scenes look at building a creative request form, tracker, dashboard, and workflow using Google Apps Script and Google Sheets." name="description"/><link href="https://madebydesignlab.com/insights/building-an-internal-creative-request-system/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Building an Internal Creative Request System" property="og:title"/><meta content="A behind-the-scenes look at building a creative request form, tracker, dashboard, and workflow using Google Apps Script and Google Sheets." property="og:description"/><meta content="https://madebydesignlab.com/insights/building-an-internal-creative-request-system/" property="og:url"/><meta content="https://madebydesignlab.com/assets/insights-osc-system.webp" property="og:image"/><meta content="2026-06-23" property="article:published_time"/><meta content="Jann Nathaniel Jaravata" property="article:author"/><meta content="summary_large_image" name="twitter:card"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="../../style.css?v=3.6.4" rel="stylesheet"/><script>
+    (function () {
+      const validThemes = ["blue", "light"];
+      let selectedTheme = "light";
+      try {
+        const savedTheme = localStorage.getItem("designlab-theme");
+        if (validThemes.includes(savedTheme)) selectedTheme = savedTheme;
+      } catch (error) {}
+      document.documentElement.dataset.theme = selectedTheme;
+    })();
+  </script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Building an Internal Creative Request System","description":"A behind-the-scenes look at building a creative request form, tracker, dashboard, and workflow using Google Apps Script and Google Sheets.","datePublished":"2026-06-23","dateModified":"2026-06-23","author":{"@type":"Person","name":"Jann Nathaniel Jaravata"},"publisher":{"@type":"Organization","name":"DesignLab Creative Studio"},"image":"https://madebydesignlab.com/assets/insights-osc-system.webp","mainEntityOfPage":"https://madebydesignlab.com/insights/building-an-internal-creative-request-system/"}</script><meta content="#061c46" name="theme-color"/></head>
+<body class="signal-theme editorial-system unified-page"><header class="site-header signal-header rp-header">
+<div class="rp-header-inner">
+<a aria-label="DesignLab Creative Studio home" class="rp-brand" href="../../index.html"><img alt="DesignLab Creative Studio" src="../../assets/designlab-header-logo.webp"/></a>
+<nav aria-label="Primary navigation" class="nav-links rp-nav"><a href="../../projects.html">Work</a><a href="../../services.html">Services</a><a href="../../downloads.html">Downloads</a><a aria-current="page" href="../../insights.html">Notes</a><a href="../../creator.html">Creator</a></nav>
+<a class="signal-header-cta rp-header-cta" href="../../contact.html?source=site-header">Start a project</a>
+</div>
+</header><main class="section-pad editorial-article-page article-page"><a class="article-back" href="../../insights.html">← Back to Studio Notes</a><article><header class="article-hero"><div class="article-meta"><span>Digital Systems</span><time datetime="2026-06-23">June 23, 2026</time><span>8 min read</span></div><h1>Building an Internal Creative Request System</h1><p>How I connected a request form, tracker, dashboard, and status workflow.</p></header><figure class="article-cover"><img alt="Cover for Building an Internal Creative Request System" height="630" src="../../assets/insights-osc-system.webp" width="1200"/></figure><div class="article-layout"><aside class="article-author"><span class="article-author-label">Written by</span><strong>Jann Nathaniel Jaravata</strong><p>Graphic Designer, Creative Director, and founder of DesignLab Creative Studio.</p><a href="../../contact.html?source=article-building-an-internal-creative-request-system">Discuss a project ↗</a></aside><div class="article-content"><p>Creative requests can become difficult to manage when they arrive through different channels. A request may start in Messenger, continue through email, and end with a file shared in a separate Google Drive folder. The design work itself may be manageable, but the surrounding communication can quickly become confusing.</p>
+<p>That was the problem behind the OSC Request Form, Tracker, and Dashboard project. I wanted to create one connected system where requests could be submitted, reviewed, assigned, monitored, and completed without relying on scattered messages.</p>
+<h2>Starting with the workflow, not the interface</h2>
+<p>Before working on the visual design, I mapped the actual stages of a request. A user submits the details. The team confirms receipt. The request is assigned. The status changes as the work progresses. The final project link and completion details are recorded. Each of these stages needed to be visible without forcing the team to check several different places.</p>
+<p>Google Sheets became the central database because it was already familiar to the team, easy to maintain, and flexible enough for the project. Google Apps Script handled the logic between the sheet and the web interface.</p>
+<p>The system was divided into three main parts:</p>
+<ul>
+<li>A request form for collecting complete project information</li>
+<li>A tracker where requesters could check progress using a tracking number</li>
+<li>An internal dashboard for managing assignments, statuses, links, and completion details</li>
+</ul>
+<h2>Designing the request form</h2>
+<p>The form needed to collect enough information for the creative team to begin working without becoming overwhelming. I grouped the fields according to how the request would be processed: requester information, request type, project details, schedule, dimensions, references, assets, and required delivery date.</p>
+<p>This structure reduced follow-up questions because the requester could provide the context, files, and specifications in one submission. It also gave the team a more consistent set of data for every request.</p>
+<p>The interface used Panpacific University colors and a lightweight responsive layout. I wanted it to feel institutional and professional while remaining simple enough for users who were not familiar with technical systems.</p>
+<h2>Building the tracker and dashboard</h2>
+<p>Each request receives a unique tracking number. The public tracker searches the spreadsheet through Apps Script and returns only the information needed by the requester, such as the request title, status, assigned staff member, date needed, and project link.</p>
+<p>The internal dashboard provides a broader operational view. Requests can be grouped as unassigned, open, ongoing, completed, or closed. The team can update assignments, project links, notes, and completion dates without editing raw spreadsheet cells directly.</p>
+<p>I also added logic for common workflow actions. Marking a request as completed can update several related fields at once, including status, ticket state, email indicators, and completion date. This reduces repetitive manual work and keeps the records consistent.</p>
+<h2>What I learned from building it</h2>
+<p>The biggest lesson was that internal tools should be designed around the people who will use them every day. A technically advanced feature is not automatically useful. The most valuable improvements were often simple: clearer labels, fewer clicks, better grouping, and visible status information.</p>
+<p>I also learned to treat the spreadsheet as a structured database rather than an ordinary table. Column names, status values, and identifiers needed to remain consistent because the web application depended on them. Small changes in naming could affect the entire workflow.</p>
+<p>Another important lesson was the value of versioning. As the system expanded, I started documenting changes, keeping backups, and displaying a visible version number. This made testing and troubleshooting much safer.</p>
+<h2>The result</h2>
+<p>The project transformed an informal request process into a connected operational system. It now serves as a request intake form, public status tracker, internal dashboard, and project record in one workflow.</p>
+<p>More importantly, it showed me that design can solve operational problems—not only visual ones. The interface matters, but the real value comes from making a process clearer, faster, and easier to maintain.</p>
+<p>The system is still designed to evolve. Future improvements may include deeper analytics, automated summaries, expanded notifications, and more administrative controls. The foundation, however, is already in place: one source of information and a workflow that is easier for both requesters and the creative team.</p></div></div></article><section class="article-cta"><div><p class="signal-kicker">Build something useful</p><h2>Have a campaign or digital tool in mind?</h2></div><a class="btn btn-primary" href="../../contact.html?source=article-footer&amp;service=General%20Inquiry">Start a Conversation</a></section></main><div aria-label="Portfolio appearance" class="theme-dock">
+<div aria-label="Choose website theme" class="theme-switcher" role="group">
+<button aria-label="Use Blue Mode" data-theme-choice="blue" title="Blue Mode" type="button"><span class="theme-swatch theme-swatch-blue"></span><span>Blue</span></button>
+<button aria-label="Use Light Mode" data-theme-choice="light" title="Light Mode" type="button"><span class="theme-swatch theme-swatch-light"></span><span>Light</span></button>
+</div>
+</div><footer class="footer compact-footer unified-footer editorial-footer">
+<div class="footer-brand-block"><strong>DesignLab Creative Studio</strong><span>Independent creative practice of Jann Nathaniel Jaravata.</span></div>
+<div><p>© <span id="year"></span> Jann Nathaniel Jaravata</p><p class="footer-meta">Version <span id="siteVersion"></span> · Last edit: <span id="lastEdit"></span></p></div>
+</footer><script src="../../theme.js?v=3.6.4"></script><script src="../../navigation.js?v=3.6.4"></script><script src="../../insights.js?v=3.6.4"></script><script src="../../reveal.js?v=3.6.4"></script></body></html>
