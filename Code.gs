@@ -33,9 +33,11 @@ function doGet(e) {
     });
   }
 
+  // Existing DesignLab counter. Preserved for the main studio website.
   if (action === "recordVisit") {
     return jsonResponse({
       success: true,
+      site: "designlab",
       visits: recordVisit()
     });
   }
@@ -43,7 +45,28 @@ function doGet(e) {
   if (action === "getVisitCount") {
     return jsonResponse({
       success: true,
+      site: "designlab",
       visits: getVisitCount()
+    });
+  }
+
+  // Separate namespaced counters for other websites.
+  // The personal portfolio uses site=jann-portfolio.
+  if (action === "recordSiteVisit") {
+    const site = normalizeVisitorSite(e.parameter.site);
+    return jsonResponse({
+      success: true,
+      site: site,
+      visits: recordSiteVisit(site)
+    });
+  }
+
+  if (action === "getSiteVisitCount") {
+    const site = normalizeVisitorSite(e.parameter.site);
+    return jsonResponse({
+      success: true,
+      site: site,
+      visits: getSiteVisitCount(site)
     });
   }
 
@@ -950,34 +973,79 @@ function convertDriveUrl(url) {
 }
 
 
+function normalizeVisitorSite(site) {
+  return String(site || "").trim().toLowerCase() === "jann-portfolio"
+    ? "jann-portfolio"
+    : "designlab";
+}
+
+function getVisitorMetricRows(site) {
+  return normalizeVisitorSite(site) === "jann-portfolio"
+    ? {
+        visits: 4,
+        lastVisit: 5,
+        totalLabel: "Jann Portfolio Total Visits",
+        lastLabel: "Jann Portfolio Last Visit"
+      }
+    : {
+        visits: 2,
+        lastVisit: 3,
+        totalLabel: "DesignLab Total Visits",
+        lastLabel: "DesignLab Last Visit"
+      };
+}
+
 function getVisitorSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = ss.getSheetByName("Site Analytics");
 
   if (!sheet) {
     sheet = ss.insertSheet("Site Analytics");
-    sheet.getRange("A1").setValue("Metric");
-    sheet.getRange("B1").setValue("Value");
-    sheet.getRange("A2").setValue("Total Visits");
-    sheet.getRange("B2").setValue(0);
-    sheet.getRange("A3").setValue("Last Visit");
-    sheet.getRange("B3").setValue("");
   }
+
+  if (!sheet.getRange("A1").getValue()) {
+    sheet.getRange("A1").setValue("Metric");
+  }
+
+  if (!sheet.getRange("B1").getValue()) {
+    sheet.getRange("B1").setValue("Value");
+  }
+
+  // Preserve the existing DesignLab value in B2 while renaming its label.
+  sheet.getRange("A2").setValue("DesignLab Total Visits");
+
+  if (sheet.getRange("B2").getValue() === "") {
+    sheet.getRange("B2").setValue(0);
+  }
+
+  sheet.getRange("A3").setValue("DesignLab Last Visit");
+
+  // The personal portfolio begins with its own independent total.
+  sheet.getRange("A4").setValue("Jann Portfolio Total Visits");
+
+  if (sheet.getRange("B4").getValue() === "") {
+    sheet.getRange("B4").setValue(0);
+  }
+
+  sheet.getRange("A5").setValue("Jann Portfolio Last Visit");
 
   return sheet;
 }
 
-function recordVisit() {
+function recordVisitorForSite(site) {
+  const normalizedSite = normalizeVisitorSite(site);
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
 
   try {
     const sheet = getVisitorSheet();
-    const current = Number(sheet.getRange("B2").getValue()) || 0;
+    const rows = getVisitorMetricRows(normalizedSite);
+    const current =
+      Number(sheet.getRange(rows.visits, 2).getValue()) || 0;
     const updated = current + 1;
 
-    sheet.getRange("B2").setValue(updated);
-    sheet.getRange("B3").setValue(new Date());
+    sheet.getRange(rows.visits, 2).setValue(updated);
+    sheet.getRange(rows.lastVisit, 2).setValue(new Date());
 
     return updated;
   } finally {
@@ -985,9 +1053,40 @@ function recordVisit() {
   }
 }
 
-function getVisitCount() {
+function getVisitorCountForSite(site) {
+  const normalizedSite = normalizeVisitorSite(site);
   const sheet = getVisitorSheet();
-  return Number(sheet.getRange("B2").getValue()) || 0;
+  const rows = getVisitorMetricRows(normalizedSite);
+
+  return Number(
+    sheet.getRange(rows.visits, 2).getValue()
+  ) || 0;
+}
+
+// Legacy functions retained for the main DesignLab website.
+function recordVisit() {
+  return recordVisitorForSite("designlab");
+}
+
+function getVisitCount() {
+  return getVisitorCountForSite("designlab");
+}
+
+// Namespaced functions used by the personal portfolio.
+function recordSiteVisit(site) {
+  return recordVisitorForSite(site);
+}
+
+function getSiteVisitCount(site) {
+  return getVisitorCountForSite(site);
+}
+
+// Run this once manually from the Apps Script editor whenever you
+// intentionally want to reset only the personal portfolio counter.
+function resetJannPortfolioVisitCount() {
+  const sheet = getVisitorSheet();
+  sheet.getRange("B4").setValue(0);
+  sheet.getRange("B5").setValue("");
 }
 
 function jsonResponse(data) {

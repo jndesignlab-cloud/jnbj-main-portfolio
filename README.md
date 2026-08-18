@@ -1,46 +1,101 @@
-# DesignLab Portfolio Website v3.10.0
+# Jann Jaravata Personal Portfolio v1.16.0
 
-Current release: Downloads Resource Library.
+Custom domain:
 
-- First live free resource: DesignLab Financial Planner (Google Sheets)
-- Flat resource grid, no blob/orbit hero
-- Guided copy/download modal and resource-use reminders
+`jannjaravata.madebydesignlab.com`
 
-# DesignLab Portfolio Website v3.9.0
+## v1.16.0 changes
 
-Current release: homepage and creator-page simplification.
+- Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
+- Added the GitHub Pages `CNAME` file.
+- Added page-specific titles and descriptions.
+- Added canonical URLs.
+- Added Open Graph and Twitter social sharing metadata.
+- Added a 1200×630 social preview image.
+- Added Person, Website, ProfilePage, CollectionPage, and CreativeWork structured data.
+- Added dynamic project-page SEO updates.
+- Added `robots.txt` and `sitemap.xml`.
+- Added favicon and application icons.
+- Added `site.webmanifest`.
+- Added image dimensions and loading hints to reduce layout shifting.
 
-- Removed Random Project, Studio Notes, and Behind DesignLab from the homepage.
-- Simplified Creator into a profile header, brief About, Active Pages, and personal-portfolio CTA.
-- Personal portfolio: `https://jannjaravata.madebydesignlab.com`
+## Required DNS
 
-# DesignLab Portfolio v3.4.0
+Create this record with your DNS provider:
 
-## New in v3.4.0
+- Type: `CNAME`
+- Host/Name: `jannjaravata`
+- Target/Value: `jndesignlab-cloud.github.io`
 
-- `admin.html` is now a private overview dashboard.
-- The previous add-project form moved to `addproject.html`.
-- Dashboard metrics include portfolio projects, site visits, inquiry totals/statuses, and Daily Task Tracker summaries.
-- Added a compact tools directory for portfolio, planning, Meta Business Suite, and managed Facebook pages.
-- Added Overdrive.PH to the public homepage's Active Pages section.
-- Dashboard data requires the existing portfolio admin password.
-- The task summary uses the existing Daily Task Tracker Apps Script URL in `config.js`.
+Do not include `https://` in the DNS target.
 
-### Apps Script update
+After uploading the extracted files to the repository root, open GitHub:
 
-Replace the deployed portfolio `Code.gs`, restore your private `ADMIN_PASSWORD`, then deploy a **New version** of the existing Web App. The Web App URL can remain unchanged.
+**Repository Settings → Pages → Custom domain**
 
-# DesignLab Portfolio Website v3.4.0 — Random Project Spotlight
+Enter:
 
-This release adds a database-driven featured project section above Recent Projects.
+`jannjaravata.madebydesignlab.com`
 
-## v3.4.0 updates
+Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
 
-- Random project spotlight selected from the live Projects database
-- Shuffle control to display another project without reloading
-- Highlight links to the full case study and existing project preview modal
-- Spotlight project is excluded from the immediate Recent Projects list when possible
-- Responsive Light and Blue Mode styling
-- Existing inquiry, tracking, CV, services, notes, admin, and visitor systems preserved
 
-No Apps Script or Code.gs update is required.
+## v1.16.0 interface refinement
+
+- Simplified the homepage capability categories to six clear choices.
+- Centered the category icons and labels.
+- Added numbered categories and an explicit “View details” hint.
+- Reduced the Personal Record number size and spacing to prevent overlap.
+- Preserved the shared DesignLab project archive, SEO files, and custom domain configuration.
+
+
+## v1.16.0 refinements
+
+- Converted the About My Practice section into one reading column.
+- Moved the personal portfolio visit counter to the lower-left corner.
+- Added floating LinkedIn, DesignLab Facebook, and madebydesignlab.com links on the lower-right.
+- Added previous/next image controls and keyboard arrow navigation to project galleries.
+- Removed the CV statistics section.
+- Moved Professional Experience directly below the Online CV introduction.
+- Rewrote CV responsibilities as action-led sentences that explain the task and resulting output.
+- Forced capability, project-preview, and CV-detail modals into clear one-column layouts.
+
+
+## v1.16.0 corrections
+
+- Re-aligned the About My Practice and final contact sections within the site shell.
+- Reduced headline widths and added responsive wrapping to stop horizontal clipping.
+- Switched the personal portfolio to separate visitor-counter API actions.
+- Added the complete updated `Code.gs` backend.
+- Added a manual `resetJannPortfolioVisitCount` function.
+- Preserved the main DesignLab counter and its existing total.
+
+
+## v1.16.0 bug fix
+
+- Removed capability modal state from the page URL.
+- Disabled automatic modal reopening after refresh.
+- Automatically clears old `?skill=` parameters left by previous versions.
+- Capability modals now open only after a visitor deliberately clicks a category.
+
+
+## v1.16.0 — direct project homepage
+
+- Removed the homepage capability/category chooser.
+- Removed the capability modal and random project sample.
+- Added six shared-database projects immediately below the Personal Record.
+- Added a direct View More Projects link.
+- Removed visible instructional/helper copy from the homepage, Projects page, Project Gallery, and CV capability section.
+- Preserved the shared DesignLab project archive, separate portfolio counter, social links, SEO, CNAME, CV, and image-gallery navigation.
+
+
+## v1.16.0 — CV-style homepage and contact modal
+
+- Removed the Facebook-profile-style homepage header.
+- Reused the compact Online CV navigation system for the homepage.
+- Added a portrait-led personal introduction aligned for a portfolio homepage.
+- Removed the About My Practice section.
+- Removed the large contact strip from the homepage.
+- Added a site-wide Contact modal with email, mobile number, location, LinkedIn, DesignLab, and Facebook details.
+- Added a direct Send an Email call to action.
+- Contact modals open only after deliberate clicks and do not persist through refreshes.

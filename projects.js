@@ -1,242 +1,63 @@
-const SITE_VERSION = "3.12.0";
+const grid = document.getElementById('projectsGrid');
+const count = document.getElementById('projectArchiveCount');
+const modal = document.getElementById('projectPreviewModal');
+const media = document.getElementById('previewMedia');
+const category = document.getElementById('previewCategory');
+const title = document.getElementById('previewTitle');
+const description = document.getElementById('previewDescription');
+const galleryLink = document.getElementById('previewGalleryLink');
+let projects = [];
+let lastTrigger = null;
 
-const fallbackProjects = [
-  {
-    id: "sample-university-postings",
-    title: "Recent University Postings",
-    category: "Social Media Design",
-    filterCategory: "Social Media",
-    featured: true,
-    skills: "Campaign Posters - Social Media Management - Graphic Design",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop",
-    description: "A curated presentation of campaign visuals, announcements, and social media postings designed for university communications."
-  },
-  {
-    id: "sample-designlab-downloads",
-    title: "DesignLab Downloads",
-    category: "Digital Products",
-    filterCategory: "DesignLab",
-    featured: true,
-    skills: "Canva Templates - Digital Product Design - Content Systems",
-    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1600&auto=format&fit=crop",
-    description: "Editable Canva template collections for professionals, business owners, and content creators."
-  },
-  {
-    id: "sample-brand-identity",
-    title: "Brand Identity Projects",
-    category: "Logo & Branding",
-    filterCategory: "Branding",
-    featured: true,
-    skills: "Logo Design - Brand Identity - Visual Systems",
-    image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?q=80&w=1600&auto=format&fit=crop",
-    description: "Logo concepts, visual systems, and brand direction projects for different clients and small businesses."
-  }
-];
-
-const grid = document.querySelector("#allProjectGrid");
-const filterTabs = document.querySelector("#filterTabs");
-const searchInput = document.querySelector("#projectSearch");
-const clearSearchButton = document.querySelector("#clearProjectSearch");
-const resultCount = document.querySelector("#projectResultCount");
-let allProjects = [];
-let activeFilter = "All";
-const initialSearchParams = new URLSearchParams(window.location.search);
-let searchQuery = initialSearchParams.get("search") || "";
-if (searchInput && searchQuery) searchInput.value = searchQuery;
-
-document.querySelector("#year").textContent = new Date().getFullYear();
-
-const versionElement = document.querySelector("#siteVersion");
-const lastEditElement = document.querySelector("#lastEdit");
-
-if (versionElement) versionElement.textContent = SITE_VERSION;
-
-if (lastEditElement) {
-  const lastModified = new Date(document.lastModified);
-  lastEditElement.textContent = lastModified.toLocaleString("en-PH", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
+function escapeHtml(value) {
+  return String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
 }
 
-async function loadProjects() {
-  allProjects = fallbackProjects;
+function tile(project, index) {
+  const image = ProjectArchive.image(project);
+  return `<button class="project-tile reveal-ready" style="--reveal-delay:${(index % 8) * 45}ms" data-project-id="${escapeHtml(ProjectArchive.id(project))}" type="button">
+    <div class="project-tile-thumb">${image ? `<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}" loading="lazy" decoding="async" />` : '<span class="project-placeholder">Project preview</span>'}</div>
+    <div class="project-tile-copy"><span>${escapeHtml(project.category)}</span><h2>${escapeHtml(project.title)}</h2><p>${escapeHtml(project.description)}</p></div>
+  </button>`;
+}
 
-  if (API_URL && !API_URL.includes("PASTE_YOUR")) {
-    try {
-      const response = await fetch(`${API_URL}?action=listProjects`);
-      const data = await response.json();
+function openPreview(project, trigger) {
+  lastTrigger = trigger;
+  const image = ProjectArchive.image(project);
+  media.innerHTML = image ? `<img src="${escapeHtml(image)}" alt="Preview of ${escapeHtml(project.title)}" />` : '<div class="projects-state"><span>No preview image available.</span></div>';
+  category.textContent = project.category;
+  title.textContent = project.title;
+  description.textContent = project.description || 'A selected project from the DesignLab archive.';
+  galleryLink.href = `project.html?id=${encodeURIComponent(ProjectArchive.id(project))}`;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  modal.querySelector('.project-preview-close')?.focus();
+}
 
-      if (data.success && Array.isArray(data.projects) && data.projects.length) {
-        allProjects = data.projects;
-      }
-    } catch (error) {
-      console.error(error);
+function closePreview() {
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  lastTrigger?.focus();
+}
+
+document.querySelectorAll('[data-project-close]').forEach(button => button.addEventListener('click', closePreview));
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closePreview(); });
+
+(async () => {
+  try {
+    projects = await ProjectArchive.load();
+    count.textContent = `${projects.length} project${projects.length === 1 ? '' : 's'} in the shared archive`;
+    if (!projects.length) {
+      grid.innerHTML = '<div class="projects-state"><strong>No projects published yet.</strong><span>New items added to the DesignLab archive will appear here automatically.</span></div>';
+      return;
     }
+    grid.innerHTML = projects.map(tile).join('');
+    grid.querySelectorAll('[data-project-id]').forEach(button => button.addEventListener('click', () => openPreview(ProjectArchive.find(projects, button.dataset.projectId), button)));
+    setTimeout(() => document.querySelectorAll('.project-tile').forEach(tile => tile.classList.add('is-revealed')), 40);
+  } catch (error) {
+    count.textContent = 'Shared archive unavailable';
+    grid.innerHTML = '<div class="projects-state"><strong>The project archive could not be reached.</strong><span>Please refresh the page or try again later.</span></div>';
   }
-
-  renderProjects();
-}
-
-function renderProjects() {
-  const normalizedQuery = normalizeSearch(searchQuery);
-  const projects = allProjects.filter((project) => {
-    const matchesCategory = activeFilter === "All" || projectMatchesFilter(project, activeFilter);
-    if (!matchesCategory) return false;
-    if (!normalizedQuery) return true;
-    return createSearchText(project).includes(normalizedQuery);
-  });
-
-  grid.innerHTML = "";
-  updateSearchUi(projects.length);
-
-  if (!projects.length) {
-    grid.innerHTML = `<div class="project-empty-state"><strong>No matching projects.</strong><span>Try another keyword or choose a different category.</span></div>`;
-    return;
-  }
-
-  projects.forEach((project, index) => {
-    const projectId = project.id || createSlug(project.title);
-    const row = document.createElement("a");
-    row.className = "editorial-project-row";
-    row.href = `project.html?id=${encodeURIComponent(projectId)}`;
-    const number = String(index + 1).padStart(2, "0");
-    row.innerHTML = `
-      <span class="editorial-row-index">${number}</span>
-      <div class="editorial-project-thumb">
-        <img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" decoding="async">
-      </div>
-      <div class="editorial-row-copy">
-        <div class="editorial-row-meta"><span>${escapeHtml(project.category || "Project")}</span></div>
-        <h2>${escapeHtml(project.title)}</h2>
-        <p>${escapeHtml(project.description || "")}</p>
-        <div class="editorial-project-skills">${renderSkillsInline(project.skills)}</div>
-      </div>
-      <span class="editorial-row-arrow" aria-hidden="true">↗</span>
-    `;
-    grid.appendChild(row);
-  });
-}
-
-filterTabs.addEventListener("click", (event) => {
-  const button = event.target.closest("button");
-  if (!button) return;
-
-  activeFilter = button.dataset.filter;
-
-  document.querySelectorAll("#filterTabs button").forEach((tab) => {
-    tab.classList.toggle("active", tab === button);
-  });
-
-  renderProjects();
-});
-
-if (searchInput) {
-  searchInput.addEventListener("input", () => {
-    searchQuery = searchInput.value;
-    renderProjects();
-  });
-}
-
-if (clearSearchButton) {
-  clearSearchButton.addEventListener("click", () => {
-    searchQuery = "";
-    searchInput.value = "";
-    searchInput.focus();
-    renderProjects();
-  });
-}
-
-function updateSearchUi(count) {
-  if (resultCount) {
-    const label = count === 1 ? "project" : "projects";
-    resultCount.textContent = `${count} ${label} shown`;
-  }
-  if (clearSearchButton) clearSearchButton.hidden = !searchQuery.trim();
-}
-
-function createSearchText(project) {
-  return normalizeSearch([
-    project.title,
-    project.category,
-    project.filterCategory,
-    project.description,
-    project.skills
-  ].filter(Boolean).join(" "));
-}
-
-function normalizeSearch(value = "") {
-  return String(value)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/&amp;/g, "&")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
-
-function projectMatchesFilter(project, activeFilter) {
-  const categories = parseFilterCategories(project.filterCategory || project.category);
-  return categories.some((category) => normalizeFilter(category) === normalizeFilter(activeFilter));
-}
-
-function parseFilterCategories(value = "") {
-  if (Array.isArray(value)) {
-    return value.map((item) => String(item).trim()).filter(Boolean);
-  }
-
-  return String(value)
-    .split(/\n|,|;/)
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function normalizeFilter(value = "") {
-  return String(value)
-    .toLowerCase()
-    .replace(/&amp;/g, "&")
-    .replace(/\s*\/\s*/g, " / ")
-    .replace(/\s*&\s*/g, " & ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function renderSkillsInline(skills = "") {
-  return parseSkills(skills)
-    .slice(0, 4)
-    .map((skill) => `<span>${escapeHtml(skill)}</span>`)
-    .join("");
-}
-
-function parseSkills(skills = "") {
-  if (Array.isArray(skills)) {
-    return skills.map((item) => String(item).trim()).filter(Boolean);
-  }
-
-  return String(skills)
-    .split(/\n|-|,/)
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function createSlug(value = "") {
-  return String(value)
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
-function escapeHtml(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-loadProjects();
+})();

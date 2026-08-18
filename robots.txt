@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
-Disallow: /addproject.html
 
-Sitemap: https://madebydesignlab.com/sitemap.xml
+Sitemap: https://jannjaravata.madebydesignlab.com/sitemap.xml
