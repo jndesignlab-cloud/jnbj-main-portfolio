@@ -1,101 +1,15 @@
-# Jann Jaravata Personal Portfolio v1.16.0
+# Jann Jaravata Portfolio — v1.17.0
 
-Custom domain:
+## Supabase Project Migration
 
-`jannjaravata.madebydesignlab.com`
+This release migrates the public project archive from the legacy Apps Script project feed to the shared DesignLab Supabase project database.
 
-## v1.16.0 changes
+### Key changes
+- homepage selected projects load from Supabase
+- Projects archive loads from Supabase
+- individual project pages load directly from Supabase by project ID
+- only `Published` projects with `show_on_personal_portfolio = true` are shown
+- project data remains shared with DesignLab Creative Studio — no duplicate project entry required
+- existing visitor/contact Apps Script workflows are retained
 
-- Added footer versioning across the homepage, Projects, Project Gallery, and Online CV.
-- Added the GitHub Pages `CNAME` file.
-- Added page-specific titles and descriptions.
-- Added canonical URLs.
-- Added Open Graph and Twitter social sharing metadata.
-- Added a 1200×630 social preview image.
-- Added Person, Website, ProfilePage, CollectionPage, and CreativeWork structured data.
-- Added dynamic project-page SEO updates.
-- Added `robots.txt` and `sitemap.xml`.
-- Added favicon and application icons.
-- Added `site.webmanifest`.
-- Added image dimensions and loading hints to reduce layout shifting.
-
-## Required DNS
-
-Create this record with your DNS provider:
-
-- Type: `CNAME`
-- Host/Name: `jannjaravata`
-- Target/Value: `jndesignlab-cloud.github.io`
-
-Do not include `https://` in the DNS target.
-
-After uploading the extracted files to the repository root, open GitHub:
-
-**Repository Settings → Pages → Custom domain**
-
-Enter:
-
-`jannjaravata.madebydesignlab.com`
-
-Then enable **Enforce HTTPS** after GitHub finishes issuing the certificate.
-
-
-## v1.16.0 interface refinement
-
-- Simplified the homepage capability categories to six clear choices.
-- Centered the category icons and labels.
-- Added numbered categories and an explicit “View details” hint.
-- Reduced the Personal Record number size and spacing to prevent overlap.
-- Preserved the shared DesignLab project archive, SEO files, and custom domain configuration.
-
-
-## v1.16.0 refinements
-
-- Converted the About My Practice section into one reading column.
-- Moved the personal portfolio visit counter to the lower-left corner.
-- Added floating LinkedIn, DesignLab Facebook, and madebydesignlab.com links on the lower-right.
-- Added previous/next image controls and keyboard arrow navigation to project galleries.
-- Removed the CV statistics section.
-- Moved Professional Experience directly below the Online CV introduction.
-- Rewrote CV responsibilities as action-led sentences that explain the task and resulting output.
-- Forced capability, project-preview, and CV-detail modals into clear one-column layouts.
-
-
-## v1.16.0 corrections
-
-- Re-aligned the About My Practice and final contact sections within the site shell.
-- Reduced headline widths and added responsive wrapping to stop horizontal clipping.
-- Switched the personal portfolio to separate visitor-counter API actions.
-- Added the complete updated `Code.gs` backend.
-- Added a manual `resetJannPortfolioVisitCount` function.
-- Preserved the main DesignLab counter and its existing total.
-
-
-## v1.16.0 bug fix
-
-- Removed capability modal state from the page URL.
-- Disabled automatic modal reopening after refresh.
-- Automatically clears old `?skill=` parameters left by previous versions.
-- Capability modals now open only after a visitor deliberately clicks a category.
-
-
-## v1.16.0 — direct project homepage
-
-- Removed the homepage capability/category chooser.
-- Removed the capability modal and random project sample.
-- Added six shared-database projects immediately below the Personal Record.
-- Added a direct View More Projects link.
-- Removed visible instructional/helper copy from the homepage, Projects page, Project Gallery, and CV capability section.
-- Preserved the shared DesignLab project archive, separate portfolio counter, social links, SEO, CNAME, CV, and image-gallery navigation.
-
-
-## v1.16.0 — CV-style homepage and contact modal
-
-- Removed the Facebook-profile-style homepage header.
-- Reused the compact Online CV navigation system for the homepage.
-- Added a portrait-led personal introduction aligned for a portfolio homepage.
-- Removed the About My Practice section.
-- Removed the large contact strip from the homepage.
-- Added a site-wide Contact modal with email, mobile number, location, LinkedIn, DesignLab, and Facebook details.
-- Added a direct Send an Email call to action.
-- Contact modals open only after deliberate clicks and do not persist through refreshes.
+Domain: `jannjaravata.madebydesignlab.com`

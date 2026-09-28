@@ -188,11 +188,11 @@ document.addEventListener('keydown', event => {
 
 (async () => {
   try {
-    const all = await ProjectArchive.load();
-    const project = ProjectArchive.find(all, requested);
+    const project = await ProjectArchive.get(requested);
     if (!project) return missing();
     render(project);
-  } catch (_) {
-    missing('The shared DesignLab project archive could not be reached. Please try again later.');
+  } catch (error) {
+    console.warn('Supabase personal project:', error);
+    missing('The project could not be reached from the portfolio database. Please try again later.');
   }
 })();
